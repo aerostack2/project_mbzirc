@@ -11,21 +11,18 @@ tmux -2 new-session -d -s $session
 
 # Create roscore 
 # send-keys writes the string into the sesssion (-t -> target session , C-m -> press Enter Button)
-
-tmux new-window -t $session:1 -n 'basic_behaviours'
-tmux send-keys "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
+tmux new-window -t $session:0 -n 'ignition interface'
+tmux send-keys "ros2 launch ignition_platform ignition_platform_launch.py \
     drone_id:=$drone_namespace " C-m
 
-tmux new-window -t $SESSION:2 -n 'gps_translator'
-tmux send-keys "ros2 launch gps_utils gps_translator_launch.py" C-m
+tmux new-window -t $session:1 -n 'controller_manager'
+tmux send-keys "ros2 launch controller_manager controller_manager_launch.py \
+    drone_id:=$drone_namespace " C-m
 
-# tmux new-window -t $session:3 -n 'ignition interface'
-# tmux send-keys "ros2 launch ignition_platform ignition_platform_launch.py \
-#     drone_id:=$drone_namespace " C-m
+tmux new-window -t $session:2 -n 'traj_generator'
+tmux send-keys "ros2 launch as2_trajectory_generator as2_trajectory_generator_launch.py  \
+    drone_id:=$drone_namespace " C-m
 
-# tmux new-window -t $session:4 -n 'controller_manager'
-# tmux send-keys "ros2 launch controller_manager controller_manager_launch.py \
-#     drone_id:=$drone_namespace " C-m
-
-
-# tmux attach-session -t $session:2 C-m
+tmux new-window -t $session:3 -n 'basic_behaviours'
+tmux send-keys "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
+    drone_id:=$drone_namespace " C-m
