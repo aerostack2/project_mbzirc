@@ -12,4 +12,10 @@ while [ $n -lt $num_drones ]; do
 done
 
 session=${USER}_$(($n - 1))
-tmux a -t :1  # Attach session 0 window 1
+
+# if inside a tmux session detach before attaching to the session
+if [ -n "$TMUX" ]; then
+    tmux switch-client -t $session
+else
+    tmux attach -t $session:0
+fi
