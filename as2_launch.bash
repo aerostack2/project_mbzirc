@@ -27,7 +27,7 @@ tmux send-keys -t $session:1 "ros2 launch controller_manager controller_manager_
     drone_id:=$drone_namespace " C-m
 
 tmux new-window -t $session:2 -n 'traj_generator'
-tmux send-keys -t $session:2 "ros2 launch as2_trajectory_generator as2_trajectory_generator_launch.py  \
+tmux send-keys -t $session:2 "ros2 launch trajectory_generator trajectory_generator_launch.py  \
     drone_id:=$drone_namespace " C-m
 
 tmux new-window -t $session:3 -n 'basic_behaviours'
