@@ -9,5 +9,10 @@ Launch assets for MBZIRC22 project.
 
 - Launch AS2:
 ```
-./main_launcher.bash
+./main_launcher.bash <number-of-as2-instances:=1>
+```
+
+- Stop AS2 nodes:
+```
+./stop
 ```
