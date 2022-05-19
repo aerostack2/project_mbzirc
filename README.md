@@ -1,5 +1,7 @@
 # project_mbzirc
 
+## Launch instructions 
+
 Launch assets for MBZIRC22 project.
 
 - Launch Ignition gazebo simulator:
@@ -16,3 +18,7 @@ Launch assets for MBZIRC22 project.
 ```
 ./stop
 ```
+
+## AS2 Node Graph
+
+![as2-node-graph](docs/as2v010_2.png)
