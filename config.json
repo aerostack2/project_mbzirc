@@ -17,7 +17,7 @@
     },
     {
         "model": "quadrotor_base",
-        "pose": [ 3.0, 0.0, 0.2, 1.57 ],
+        "pose": [ 1.0, 0.0, 0.2, 1.57 ],
         "sensors": {
             "camera_0": {
                 "sensor": "hd_camera",
@@ -28,6 +28,121 @@
                 "rotation": [ 0.0, 0.0, 0.0 ]
             }
         }
+    },
+    {
+        "model": "quadrotor_base",
+        "pose": [ 2.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            }
+        }
+    },
+
+    {
+        "model": "quadrotor_base",
+        "pose": [ 3.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            }
+        }
+    },
+
+    {
+        "model": "quadrotor_base",
+        "pose": [ 4.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            }
+        }
+    },
+    {
+        "model": "quadrotor_base",
+        "pose": [ 5.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            }
+        }
+    },
+    {
+        "model": "quadrotor_base",
+        "pose": [ 6.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            }
+        }
+    },
+    {
+        "model": "quadrotor_base",
+        "pose": [ 7.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            }
+        }
+    },
+    {
+        "model": "quadrotor_base",
+        "pose": [ 8.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            }
+        }
+    },
+    {
+        "model": "quadrotor_base",
+        "pose": [ 9.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar",
+                "rotation": [ 0.0, 0.0, 0.0 ]
+            }
+        }
     }
+
     ]
 }
