@@ -1,7 +1,7 @@
 #!/bin/bash
 
 config_path="$1"
-config_path=${config_path:="config.json"}
+config_path=${config_path:="config/default.json"}
 
 export RUN_ON_START=1
 

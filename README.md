@@ -1,10 +1,19 @@
 # project_mbzirc
 
+AS2 project for the MBZIRC22 Maritime Grand Challenge. It gathers all the needed launch scripts to run the simulation.
+
+## Installation
+
+### Prerequisites
+
+* AeroStack2 (Alpha release v0.1.0) [link](https://github.com/aerostack2-developers/aerostack2/wiki/Install-Aerostack2)
+* MBZIRC official repository [link](https://github.com/osrf/mbzirc#installation-from-source)
+
 ## Launch instructions 
 
 Launch assets for MBZIRC22 project.
 
-- Launch Ignition gazebo simulator:
+- Launch Ignition Gazebo simulator:
 ```
 ./launch_ignition.bash
 ```

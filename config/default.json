@@ -1,0 +1,17 @@
+{
+    "world": "empty",
+    "drones": [
+    {
+        "model": "quadrotor_base",
+        "pose": [ 0.0, 0.0, 0.2, 1.57 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera"
+            },
+            "lidar_0": {
+                "sensor": "3d_lidar"
+            }
+        }
+    }
+    ]
+}

@@ -33,3 +33,7 @@ tmux send-keys -t $session:2 "ros2 launch trajectory_generator trajectory_genera
 tmux new-window -t $session:3 -n 'basic_behaviours'
 tmux send-keys -t $session:3 "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
     drone_id:=$drone_namespace " C-m
+
+tmux new-window -t $SESSION:4 -n 'static_transform_publisher'
+tmux send-keys -t $SESSION:4 "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_launch.py \
+    drone_id:=$drone_namespace" C-m

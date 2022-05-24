@@ -1,0 +1,13 @@
+{
+    "world": "simple_demo",
+    "drones": [
+    {
+        "model": "quadrotor_base",
+        "pose": [ 0.0, 0.0, 1.2, 1.57 ]
+    },
+    {
+        "model": "hexrotor_base",
+        "pose": [ 0.0, 3.0, 1.2, 1.57 ]
+    }
+    ]
+}
