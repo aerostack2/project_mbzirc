@@ -9,6 +9,16 @@ AS2 project for the MBZIRC22 Maritime Grand Challenge. It gathers all the needed
 * AeroStack2 (Alpha release v0.1.0) [link](https://github.com/aerostack2-developers/aerostack2/wiki/Install-Aerostack2)
 * MBZIRC official repository [link](https://github.com/osrf/mbzirc#installation-from-source)
 
+### Sourcing
+
+Sourcing setup bash files it is needed to find packages and enviroment variables. Include them in your `~/.bashrc` or run them before each execution. Three sources are needed:
+
+```bash
+source /opt/ros/${ROS_DISTRO}/setup.bash  # galactic
+source ~/as2_ws/install/setup.bash
+source ~/mbzirc_ws/install/setup.bash
+```
+
 ## Launch instructions 
 
 Launch assets for MBZIRC22 project.
