@@ -25,7 +25,7 @@ Launch assets for MBZIRC22 project.
 
 - Launch Ignition Gazebo simulator:
 ```
-./launch_ignition.bash
+./launch_ignition.bash ./config/coast.json
 ```
 Launch ignition script uses a config file to setup the ignition environment. Details of how to configure the config file can be checked in [ignition-assets](https://github.com/aerostack2-developers/ignition_assets#config-file).
 
