@@ -37,7 +37,7 @@ tmux -2 new-session -d -s $session
 # Create roscore 
 # send-keys writes the string into the sesssion (-t -> target session , C-m -> press Enter Button)
 tmux new-window -t $session:0 -n 'ignition_interface'
-tmux send-keys -t $session:0 "ros2 launch ignition_platform ignition_platform_launch.py \
+tmux send-keys -t $session:0 "ros2 launch usv_ign_platform usv_ign_platform.py \
     drone_id:=$drone_namespace \
     $sensors " C-m
 
