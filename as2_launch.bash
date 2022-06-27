@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$#" -le 0 ]; then
+	echo "usage: $0 [drone_namespace] "
+	exit 1
+fi
+
 # Arguments
 drone_namespace=$1
 
