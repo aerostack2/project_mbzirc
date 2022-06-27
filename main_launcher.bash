@@ -8,11 +8,11 @@ DIR_SCRIPT="${0%/*}"
 n=0
 drone_namespace=${AEROSTACK2_SIMULATION_DRONE_ID::-1}
 while [ $n -lt $num_drones ]; do
-    ${DIR_SCRIPT}/as2_launch.bash $n $drone_namespace$n
+    ${DIR_SCRIPT}/as2_launch.bash $drone_namespace$n
     n=$(($n + 1))
 done
 
-session=${USER}_$(($n - 1))
+session=${drone_namespace}$(($n - 1))
 
 # if inside a tmux session detach before attaching to the session
 if [ -n "$TMUX" ]; then
