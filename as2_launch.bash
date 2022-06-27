@@ -7,6 +7,8 @@ fi
 
 # Arguments
 drone_namespace=$1
+tree=$2  #TODO: temporal
+tree=${2:=""}
 
 source ./launch_tools.bash
 
@@ -26,3 +28,10 @@ new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behavi
 
 new_window 'static_transform_publisher' "ros2 launch basic_tf_tree_generator basic_tf_tree_generator_launch.py \
     drone_id:=$drone_namespace"
+
+if [[ -n $tree ]]; then
+    new_window 'mission_planner' "ros2 launch behaviour_trees test.launch.py \
+        drone_id:=$drone_namespace \
+        tree:=$tree \
+        groot_logger:=true"
+fi

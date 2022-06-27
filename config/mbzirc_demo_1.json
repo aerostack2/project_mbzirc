@@ -8,7 +8,8 @@
     },
     {
         "model": "quadrotor_base",
-        "pose": [ -1475.0, -2.0, 4.2, 0.0 ],
+        "name": "hunter_0",
+        "pose": [ -1462.0, -17.7, 0.9, 0.0 ],
         "sensors": {
             "front_camera": {
                 "sensor": "hd_camera"
@@ -17,24 +18,7 @@
     },
     {
         "model": "quadrotor_base",
-        "pose": [ -1475.0, 2.0, 4.2, 0.0 ],
-        "sensors": {
-            "front_camera": {
-                "sensor": "hd_camera"
-            }
-        }
-    },
-    {
-        "model": "quadrotor_base",
-        "pose": [ -1462.0, -15.30, 0.9, 0.0 ],
-        "sensors": {
-            "front_camera": {
-                "sensor": "hd_camera"
-            }
-        }
-    },
-    {
-        "model": "quadrotor_base",
+        "name": "hunter_1",
         "pose": [ -1462.0, -15.3, 0.9, 0.0 ],
         "sensors": {
             "front_camera": {
@@ -44,7 +28,8 @@
     },
     {
         "model": "quadrotor_base",
-        "pose": [ -1462.0, -16.5, 0.9, 0.0 ],
+        "name": "drone_sim_4",
+        "pose": [ -1462.0, -16.5, 0.9, 3.1416 ],
         "sensors": {
             "front_camera": {
                 "sensor": "hd_camera"
@@ -53,7 +38,18 @@
     },
     {
         "model": "quadrotor_base",
-        "pose": [ -1462.0, -17.7, 0.9, 0.0 ],
+        "name": "beacon_0",
+        "pose": [ -1475.0, 2.0, 4.2, 0.0 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "hd_camera"
+            }
+        }
+    },
+    {
+        "model": "quadrotor_base",
+        "name": "beacon_1",
+        "pose": [ -1475.0, -2.0, 4.2, 0.0 ],
         "sensors": {
             "front_camera": {
                 "sensor": "hd_camera"
