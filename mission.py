@@ -21,13 +21,13 @@ def drone_run(drone_interface, n_uav ):
     circle_1 = create_circle(10 , [0,0,3], n_uavs)
     pose = circle_1[n_uav]
     pose[2] += 2*(n_uav/n_uavs)
-    drone_interface.go_to(pose)
+    drone_interface.go_to(pose[0], pose[1], pose[2], 2.0)
     sleep(2)
     circle_2 = create_circle(5, [0,0,2], n_uavs)
     if n_uav-1 < 0 :
-        drone_interface.go_to(circle_2[n_uavs-1])
+        drone_interface.go_to(circle_2[n_uavs-1][0], circle_2[n_uavs-1][1], circle_2[n_uavs-1][2], 2.0)
     else:
-        drone_interface.go_to(circle_2[n_uav-1])
+        drone_interface.go_to(circle_2[n_uav-1][0], circle_2[n_uav-1][1], circle_2[n_uav-1][2], 2.0)
     sleep(2)
 
     drone_interface.land(0.2)
