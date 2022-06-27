@@ -12,18 +12,18 @@
     <BehaviorTree ID="BehaviorTree">
         <Decorator ID="WaitForEvent" result="{pose}" topic_name="mission/start">
             <Sequence>
-                <Action ID="SendEvent" data="" name="Beacon0" topic_name="/beacon_0/mission/start"/>
-                <Action ID="SendEvent" data="" name="Beacon1" topic_name="/beacon_1/mission/start"/>
+                <Action ID="SendEvent" data="-1460;-10;10" name="Beacon0" topic_name="/beacon_0/mission/start"/>
+                <Action ID="SendEvent" data="-1460;-20;10" name="Beacon1" topic_name="/beacon_1/mission/start"/>
                 <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="0" tk_speed="0.5"/>
                 <Parallel failure_threshold="1" success_threshold="3">
                     <Action ID="GoTo" max_speed="6" pose="{pose}" yaw_angle="0.0" yaw_mode="0"/>
                     <SequenceStar>
                         <ReactiveFallback>
-                            <Condition ID="IsTargetDetected" dist_threshold="100" pose="{target_pose}"/>
+                            <Condition ID="IsTargetDetected" dist_threshold="100" pose="{target_pose}" topic_name="/vessel_A/pose"/>
                             <Action ID="SendEvent" data="{target_pose}" name="Hunter0" topic_name="/hunter_0/mission/start"/>
                         </ReactiveFallback>
                         <ReactiveFallback>
-                            <Condition ID="IsTargetDetected" dist_threshold="100" pose="{target_pose}"/>
+                            <Condition ID="IsTargetDetected" dist_threshold="100" pose="{target_pose}" topic_name="/vessel_B/pose"/>
                             <Action ID="SendEvent" data="{target_pose}" name="Hunter1" topic_name="/hunter_1/mission/start"/>
                         </ReactiveFallback>
                     </SequenceStar>
@@ -69,6 +69,7 @@
         <Condition ID="IsTargetDetected">
             <input_port name="dist_threshold">Minimum distance to target</input_port>
             <output_port name="pose">Target Pose</output_port>
+            <input_port name="topic_name">Topic Name</input_port>
         </Condition>
         <Action ID="Land">
             <input_port default="0.5" name="speed">Landing speed</input_port>
