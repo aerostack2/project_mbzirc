@@ -19,14 +19,12 @@
                 <Parallel failure_threshold="1" success_threshold="3">
                     <Action ID="GoTo" max_speed="6" pose="{pose}" yaw_angle="0.0" yaw_mode="0"/>
                     <SequenceStar>
-                        <ReactiveFallback>
-                            <Condition ID="IsTargetDetected" dist_threshold="100" pose="{target_pose}" topic_name="/vessel_A/pose"/>
-                            <Action ID="SendEvent" data="{target_pose}" name="Hunter0" topic_name="/hunter_0/mission/start"/>
-                        </ReactiveFallback>
-                        <ReactiveFallback>
-                            <Condition ID="IsTargetDetected" dist_threshold="100" pose="{target_pose}" topic_name="/vessel_B/pose"/>
-                            <Action ID="SendEvent" data="{target_pose}" name="Hunter1" topic_name="/hunter_1/mission/start"/>
-                        </ReactiveFallback>
+                        <Condition ID="IsTargetDetected" dist_threshold="100" pose="{target_pose}" topic_name="vessel_A/pose"/>
+                        <Action ID="SendEvent" data="{target_pose}" name="Hunter0" topic_name="/hunter_0/mission/start"/>
+                    </SequenceStar>
+                    <SequenceStar>
+                        <Condition ID="IsTargetDetected" dist_threshold="100" pose="{target_pose}" topic_name="vessel_B/pose"/>
+                        <Action ID="SendEvent" data="{target_pose}" name="Hunter1" topic_name="/hunter_1/mission/start"/>
                     </SequenceStar>
                 </Parallel>
                 <Decorator ID="WaitForEvent" result="" topic_name="mission/end">
