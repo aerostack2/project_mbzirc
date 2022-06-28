@@ -15,6 +15,7 @@
                 <Action ID="SendEvent" data="-1460;-10;10" name="Beacon0" topic_name="/beacon_0/mission/start"/>
                 <Action ID="SendEvent" data="-1460;-20;10" name="Beacon1" topic_name="/beacon_1/mission/start"/>
                 <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="0" tk_speed="0.5"/>
+                <Action ID="GoTo" max_speed="6" name="undock" pose="-1490;-16.5;0" yaw_angle="0.0" yaw_mode="0"/>
                 <Parallel failure_threshold="1" success_threshold="3">
                     <Action ID="GoTo" max_speed="6" pose="{pose}" yaw_angle="0.0" yaw_mode="0"/>
                     <SequenceStar>
