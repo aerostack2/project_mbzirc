@@ -10,6 +10,9 @@ drone_namespace=$1
 tree=$2  #TODO: temporal
 tree=${2:=""}
 
+client_port=$3
+server_port=$4
+
 source ./launch_tools.bash
 
 new_session $drone_namespace
@@ -33,5 +36,7 @@ if [[ -n $tree ]]; then
     new_window 'mission_planner' "ros2 launch behaviour_trees test.launch.py \
         drone_id:=$drone_namespace \
         tree:=$tree \
-        groot_logger:=true"
+        groot_logger:=true \
+        groot_client_port:=$client_port \
+        groot_server_port:=$server_port"
 fi

@@ -1,6 +1,6 @@
 # project_mbzirc
 
-AS2 project for the MBZIRC22 Maritime Grand Challenge. It gathers all the needed launch scripts to run the simulation.
+AS2 project for the MBZIRC22 Maritime Grand Challenge. It gathers all the needed launch scripts to run the simulation. This branch launch the simulation demo for 30/06/2022.
 
 ## Installation
 
@@ -21,38 +21,47 @@ source ~/mbzirc_ws/install/setup.bash
 
 ## Launch instructions 
 
-Launch assets for MBZIRC22 project.
+Launch ignition using a config file to setup the ignition environment. Details of how to configure the config file can be checked in [ignition-assets](https://github.com/aerostack2-developers/ignition_assets#config-file).
 
 - Launch Ignition Gazebo simulator:
 ```
-./launch_ignition.bash ./config/coast.json
+./launch_ignition.bash ./config/demo_mbzirc.json
 ```
-Launch ignition script uses a config file to setup the ignition environment. Details of how to configure the config file can be checked in [ignition-assets](https://github.com/aerostack2-developers/ignition_assets#config-file).
 
+Launch AS2 nodes, one instance for the USV and others for each drone.
 
 - Launch AS2:
 ```
-./main_launcher.bash <number-of-as2-instances:=1>
+./mbzirc_demo.bash
 ```
-Each instance represents a drone.
 
+- Launch AS2 detection nodes:
+```
+.YOLO_inference/detections_launch.bash
+```
+
+Publish each Vessel position (simulating the radar).
+
+- Publish Vessel A position:
+```
+ros2 topic pub /usv/vessel_A/pose geometry_msgs/msg/PoseStamped "{header: {stamp: {sec: 0, nanosec: 0}, frame_id: ''}, pose: {position: {x: -1340.0, y: 300.0, z: 10.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
+```
+
+- Publish Vessel B position:
+```
+ros2 topic pub /usv/vessel_B/pose geometry_msgs/msg/PoseStamped "{header: {stamp: {sec: 0, nanosec: 0}, frame_id: ''}, pose: {position: {x: -1290.0, y: 85.0, z: 10.0}, orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}}}"
+```
+
+Start mission.
+
+- Publish USV goal position:
+```
+ros2 topic pub --once /usv/mission/start as2_msgs/msg/MissionEvent "{header: {stamp: {sec: 0, nanosec: 0}, frame_id: ''}, data: '-1250;350;0'}" 
+```
+
+End mission.
 
 - Stop AS2 nodes:
 ```
 ./stop
 ```
-
-## Launch instructions (MBZIRC)
-```bash
-ros2 launch mbzirc_ros competition_local.launch.py ign_args:="-v 4 -r simple_demo.sdf"
-```
-
-```bash
-ros2 launch mbzirc_ign spawn.launch.py sim_mode:=sim bridge_competition_topics:=False name:=drone_sim_0 world:=simple_demo model:=mbzirc_quadrotor type:=uav x:=1 y:=2 z:=1.05 R:=0 P:=0 Y:=0 slot0:=mbzirc_hd_camera slot1:=mbzirc_rgbd_camera
-```
-
-**NOTE:** Drone is not moving since MBZIRC quadrotor and hexrotor do not have odometry plugin. The lack of odometry makes the controller to not send actuator commands to the platform.
-
-## AS2 Node Graph
-
-![as2-node-graph](docs/as2v010_2.png)
