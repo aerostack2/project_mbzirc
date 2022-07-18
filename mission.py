@@ -16,21 +16,21 @@ def create_circle(radius, centre, n_uav):
 def drone_run(drone_interface, n_uav ):
     drone_interface.offboard()
     drone_interface.arm()
-    drone_interface.takeoff(3, 2)
+    drone_interface.takeoff(10, 10)
     sleep(1)
-    circle_1 = create_circle(10 , [0,0,3], n_uavs)
+    circle_1 = create_circle(10 , [0,0,10], n_uavs)
     pose = circle_1[n_uav]
     pose[2] += 2*(n_uav/n_uavs)
     drone_interface.go_to(pose)
     sleep(2)
-    circle_2 = create_circle(5, [0,0,2], n_uavs)
+    circle_2 = create_circle(5, [0,0,10], n_uavs)
     if n_uav-1 < 0 :
         drone_interface.go_to(circle_2[n_uavs-1])
     else:
         drone_interface.go_to(circle_2[n_uav-1])
     sleep(2)
 
-    drone_interface.land(0.2)
+    # drone_interface.land(0.2)
 
 
 if __name__ == '__main__':
@@ -50,19 +50,28 @@ if __name__ == '__main__':
         drone_id = "drone0"
 
     drone_id = drone_id[:-1]
-    for i in range(n_uavs):
-        uavs.append(DroneInterface(f"{drone_id}{i}"))
-        f = threading.Thread(target=drone_run, args=(uavs[i], i))
-        functions.append(f)
+    uav = DroneInterface(f"{drone_id}0")
+    uav.offboard()
+    uav.arm()
+    uav.takeoff(10, 10)
+    sleep(1)
+    uav.go_to([-1420,6,10])
 
-    for f in functions:
-        f.start()
+    # for i in range(n_uavs):
+    #     uavs.append(DroneInterface(f"{drone_id}{i}"))
+    #     f = threading.Thread(target=drone_run, args=(uavs[i], i))
+    #     functions.append(f)
 
-    for f in functions:
-        f.join()
+    # for f in functions:
+    #     f.start()
 
-    for uav in uavs:
-        uav.shutdown()
+    # for f in functions:
+    #     f.join()
+
+    # for uav in uavs:
+    #     uav.shutdown()
+
+    uav.shutdown()
 
     rclpy.shutdown()
 

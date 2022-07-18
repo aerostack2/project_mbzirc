@@ -6,8 +6,9 @@ num_drones=${num_drones:=1}
 DIR_SCRIPT="${0%/*}"
 
 n=0
+drone_namespace=${AEROSTACK2_SIMULATION_DRONE_ID::-1}
 while [ $n -lt $num_drones ]; do
-    ${DIR_SCRIPT}/as2_launch.bash $n
+    ${DIR_SCRIPT}/as2_launch.bash $n $drone_namespace$n
     n=$(($n + 1))
 done
 

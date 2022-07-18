@@ -1,0 +1,15 @@
+{
+    "world": "coast",
+    "drones": [
+    {
+        "model": "quadrotor_base",
+        "pose": [ -1500.0, 2.0, 4.3, 0.0 ],
+        "sensors": {
+            "front_camera": {
+                "sensor": "semantic_camera",
+                "position": [ 0.4, 0.0, 0.4 ]
+            }
+        }
+    }
+    ]
+}
