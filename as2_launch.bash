@@ -33,5 +33,5 @@ if [[ -n $tree ]]; then
     new_window 'mission_planner' "ros2 launch behaviour_trees behaviour_trees.launch.py \
         drone_id:=$drone_namespace \
         tree:=$tree \
-        groot_logger:=true"
+        groot_logger:=false"
 fi
