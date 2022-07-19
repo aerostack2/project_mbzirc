@@ -29,7 +29,7 @@ new_window 'traj_generator' "ros2 launch trajectory_generator trajectory_generat
 new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
     drone_id:=$drone_namespace "
 
-new_window 'mission_planner' "ros2 launch behaviour_trees test.launch.py \
+new_window 'mission_planner' "ros2 launch behaviour_trees behaviour_trees.launch.py \
     drone_id:=$drone_namespace \
     tree:=$tree \
     groot_logger:=true \
