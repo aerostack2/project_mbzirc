@@ -27,7 +27,9 @@ new_window 'traj_generator' "ros2 launch trajectory_generator trajectory_generat
     drone_id:=$drone_namespace "
 
 new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
-    drone_id:=$drone_namespace "
+    drone_id:=$drone_namespace \
+    config_takeoff:=usv/takeoff.yaml \
+    config_goto:=usv/goto.yaml"
 
 new_window 'mission_planner' "ros2 launch behaviour_trees behaviour_trees.launch.py \
     drone_id:=$drone_namespace \

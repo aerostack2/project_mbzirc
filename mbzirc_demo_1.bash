@@ -4,7 +4,7 @@ DIR_SCRIPT="${0%/*}"
 
 drone_namespace=${AEROSTACK2_SIMULATION_DRONE_ID::-1}
 
-${DIR_SCRIPT}/as2_launch.bash usv drone_roles/usv.xml
+${DIR_SCRIPT}/as2_usv_launch.bash usv usv/tree.xml
 
 ${DIR_SCRIPT}/as2_launch.bash beacon_0 drone_roles/beacon.xml
 ${DIR_SCRIPT}/as2_launch.bash beacon_1 drone_roles/beacon.xml
