@@ -23,23 +23,40 @@ source ~/mbzirc_ws/install/setup.bash
 
 Launch assets for MBZIRC22 project.
 
-- Launch Ignition Gazebo simulator:
+- Launch Ignition Gazebo simulator this command:
 ```
-./launch/launch_ignition.bash simple_demo ./config/one_drone.yaml
+./launch/launch_ignition.bash <world> <config_yaml>
+
+# Some configuration examples are:
+./launch/launch_ignition.bash simple_demo ./config/one_drone.yaml # For launching the simple demo world with one_drone.yaml config 
+./launch/launch_ignition.bash coast ./config/one_drone.yaml # For launching the coast world with one_drone.yaml config 
 ```
 Launch ignition script uses a config file to setup the ignition environment. Details of how to configure the config file can be checked in [mbzirc wiki](https://github.com/osrf/mbzirc/wiki/UAV-and-USV-Payload-Configurations#configuring-a-group-of-vehicles-via-yaml).
 
-
 - Launch AS2:
 ```
-./main_launcher.bash <number-of-as2-instances:=1>
-```
-Each instance represents a drone.
+./as2_launcher.bash <robot_name>
 
+# For example if the config file is ./config/one_drone.yaml -> the robot name is quadrotor_1
+
+./as2_launcher.bash quadrotor_1
+```
+> Whenever a as2_launcher.bash is executed a new tmux session is being created named <robot_name> , to attach a terminal to it run: <br />
+> ```$ tmux a -t <robot_name>``` <br />
+> For listing all tmux sessions running ``` $ tmux ls ``` <br />
+> More info about how to use Tmux can be found in this [tmux easy guide](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/) 
+
+- Launch a mission:
+
+```
+./mission.py <robot_name>
+```
+
+Each instance represents a drone.
 
 - Stop AS2 nodes:
 ```
-./stop
+./stop.bash
 ```
 
 ## AS2 Node Graph
