@@ -25,9 +25,9 @@ Launch assets for MBZIRC22 project.
 
 - Launch Ignition Gazebo simulator:
 ```
-./launch_ignition.bash ./config/coast.json
+./launch/launch_ignition.bash simple_demo ./config/one_drone.yaml
 ```
-Launch ignition script uses a config file to setup the ignition environment. Details of how to configure the config file can be checked in [ignition-assets](https://github.com/aerostack2-developers/ignition_assets#config-file).
+Launch ignition script uses a config file to setup the ignition environment. Details of how to configure the config file can be checked in [mbzirc wiki](https://github.com/osrf/mbzirc/wiki/UAV-and-USV-Payload-Configurations#configuring-a-group-of-vehicles-via-yaml).
 
 
 - Launch AS2:
@@ -41,17 +41,6 @@ Each instance represents a drone.
 ```
 ./stop
 ```
-
-## Launch instructions (MBZIRC)
-```bash
-ros2 launch mbzirc_ros competition_local.launch.py ign_args:="-v 4 -r simple_demo.sdf"
-```
-
-```bash
-ros2 launch mbzirc_ign spawn.launch.py sim_mode:=sim bridge_competition_topics:=False name:=drone_sim_0 world:=simple_demo model:=mbzirc_quadrotor type:=uav x:=1 y:=2 z:=1.05 R:=0 P:=0 Y:=0 slot0:=mbzirc_hd_camera slot1:=mbzirc_rgbd_camera
-```
-
-**NOTE:** Drone is not moving since MBZIRC quadrotor and hexrotor do not have odometry plugin. The lack of odometry makes the controller to not send actuator commands to the platform.
 
 ## AS2 Node Graph
 

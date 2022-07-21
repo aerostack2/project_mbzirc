@@ -10,7 +10,7 @@ drone_namespace=$1
 tree=$2  #TODO: temporal
 tree=${tree:=""}
 
-source ./launch_tools.bash
+source ./launch/launch_tools.bash
 
 new_session $drone_namespace
 
