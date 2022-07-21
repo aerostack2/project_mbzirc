@@ -1,0 +1,11 @@
+---
+- model_name: 'beacon_0'
+  model_type: 'mbzirc_quadrotor'
+  flight_time: 60
+  position:
+    xyz: [0, 0, 1]
+    rpy: [0, 0, 0]
+  payload:
+    slot0:
+      sensor: 'mbzirc_hd_camera'
+      rpy: [0, 0, 0]
