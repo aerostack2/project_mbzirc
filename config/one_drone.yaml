@@ -1,11 +1,14 @@
 ---
-- model_name: 'beacon_0'
+- model_name: 'quadrotor_1'
   model_type: 'mbzirc_quadrotor'
   flight_time: 60
   position:
-    xyz: [0, 0, 1]
+    xyz: [-1500.0, 2, 4.3]
     rpy: [0, 0, 0]
   payload:
     slot0:
       sensor: 'mbzirc_hd_camera'
       rpy: [0, 0, 0]
+    slot3:
+      sensor: 'mbzirc_point_lidar'
+      rpy: [0, 1.57, 0]
