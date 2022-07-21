@@ -37,3 +37,5 @@ if [[ -n $tree ]]; then
         tree:=$tree \
         groot_logger:=false"
 fi
+
+echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
