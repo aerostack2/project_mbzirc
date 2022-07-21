@@ -54,7 +54,7 @@ Launch ignition script uses a config file to setup the ignition environment. Det
 
 Each instance represents a drone.
 
-- Stop AS2 nodes:
+- Stop all AS2 nodes:
 ```
 ./stop.bash
 ```
