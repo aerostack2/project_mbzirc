@@ -22,6 +22,8 @@ vcs import --recursive < ./projects/project_mbzirc/install.repos
 # build code
 as2 build
 ```
+> If Aerostack2 were already installed check that ```ignition_platform``` package is on ```mbzirc_competition``` branch. For checking this branch run: <br /> ```$ as2 cd ignition_platform && git branch ``` <br />
+> If the package is in other branch, run <br /> ```$ git checkout mbzirc_competition && as2 build```
 
 ### Sourcing
 
