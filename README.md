@@ -51,11 +51,11 @@ Launch ignition script uses a config file to setup the ignition environment. Det
 
 - Launch AS2:
 ```
-./as2_launcher.bash <robot_name>
+./as2_launch.bash <robot_name>
 
 # For example if the config file is ./config/one_drone.yaml -> the robot name is quadrotor_1
 
-./as2_launcher.bash quadrotor_1
+./as2_launch.bash quadrotor_1
 ```
 > Whenever a as2_launcher.bash is executed a new tmux session is being created named <robot_name> , to attach a terminal to it run: <br />
 > ```$ tmux a -t <robot_name>``` <br />
