@@ -19,7 +19,8 @@ new_window 'ignition_interface' "ros2 launch usv_ign_platform usv_ign_platform.p
 
 new_window 'state_estimator' "ros2 launch basic_state_estimator basic_state_estimator_launch.py \
     drone_id:=$drone_namespace \
-    odom_only:=true"
+    ground_truth:=true \
+    base_frame:='\"\"' "
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
     drone_id:=$drone_namespace "
