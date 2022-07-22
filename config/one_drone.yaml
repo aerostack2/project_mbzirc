@@ -9,6 +9,6 @@
     slot0:
       sensor: 'mbzirc_hd_camera'
       rpy: [0, 0, 0]
-    slot3:
-      sensor: 'mbzirc_point_lidar'
-      rpy: [0, 1.57, 0]
+    # slot3:
+    #   sensor: 'mbzirc_point_lidar'
+    #   rpy: [0, 1.57, 0]
