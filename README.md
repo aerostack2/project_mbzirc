@@ -77,4 +77,4 @@ Each instance represents a drone.
 
 ## AS2 Node Graph
 
-![as2-node-graph](docs/as2v010_2.png)
+![as2-node-graph](docs/as2v020_2.png)
