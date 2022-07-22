@@ -18,7 +18,7 @@ as2 project -n mbzirc
 - Install needed as2 packages:
 ```
 cd $AEROSTACK2_PATH
-vcs import --recursive < ./projects/project_mbzirc/install.repos
+vcs import --recursive < ./projects/mbzirc/install.repos
 # build code
 as2 build
 ```
