@@ -6,8 +6,22 @@ AS2 project for the MBZIRC22 Maritime Grand Challenge. It gathers all the needed
 
 ### Prerequisites
 
-* AeroStack2 (Alpha release v0.1.0) [link](https://github.com/aerostack2-developers/aerostack2/wiki/Install-Aerostack2)
+* AeroStack2 (not release installation required) [link](https://github.com/aerostack2-developers/aerostack2/wiki/Install-Aerostack2)
 * MBZIRC official repository [link](https://github.com/osrf/mbzirc#installation-from-source)
+
+### AS2 release for MBZIRC installation
+- Get the project with the AS2 CLI:
+```
+as2 project -n mbzirc
+```
+
+- Install needed as2 packages:
+```
+cd $AEROSTACK2_PATH
+vcs import --recursive < ./projects/project_mbzirc/install.repos
+# build code
+as2 build
+```
 
 ### Sourcing
 
