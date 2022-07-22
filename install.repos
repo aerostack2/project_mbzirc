@@ -89,7 +89,7 @@ repositories:
     url: git@github.com:aerostack2-developers/python_interface.git
     version: main
 
-  stack/user_interface/behviour_tress:
+  stack/user_interface/behaviour_tress:
     type: git 
     url: git@github.com:aerostack2-developers/behaviour_trees.git
     version: main
