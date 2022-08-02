@@ -1,0 +1,13 @@
+---
+- model_name: 'quadrotor_1'
+  model_type: 'mbzirc_quadrotor'
+  flight_time: 60
+  position:
+    xyz: [0, 2.05, 1.92]
+    # xyz: [0, 0, 4.3]
+    rpy: [0, 0, 0]
+  gripper: 'mbzirc_suction_gripper'
+  payload:
+    slot0:
+      sensor: 'mbzirc_rgbd_camera'
+      rpy: [0, 0, 0]

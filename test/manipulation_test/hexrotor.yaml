@@ -1,0 +1,12 @@
+---
+- model_name: 'hexrotor_1'
+  model_type: 'mbzirc_hexrotor'
+  flight_time: 60
+  position:
+    xyz: [0, 0, 4.3]
+    rpy: [0, 0, 0]
+  gripper: 'mbzirc_oberon7_gripper'
+  payload:
+    slot0:
+      sensor: 'mbzirc_rgbd_camera'
+      rpy: [0, 0, 0]
