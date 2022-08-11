@@ -68,71 +68,75 @@ RUN apt-get -qq update && apt-get -q -y install \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get -qq clean
 
+# install core dependencies (WIP)
+RUN apt-get update && \
+  apt-get install -y \
+  tmux \
+  libyaml-cpp* \
+  libeigen3-dev \
+  python3-pip \
+  python3-testresources \
+  ros-galactic-ament-cmake-clang-format \
+  ros-galactic-eigen3-cmake-module \
+  ros-galactic-gazebo-ros-pkgs \
+  ros-galactic-geographic-msgs \
+  libgeographic-dev \
+  geographiclib-tools \
+  libgoogle-glog* \
+  libgflags* \
+  libnlopt-cxx-dev \
+  ros-galactic-behaviortree-cpp-v3 \
+  ros-galactic-nav2-behavior-tree \
+  ros-galactic-nav2-msgs \
+  ros-galactic-ros-ign-bridge \
+  ros-galactic-ros-ign-gazebo \
+  && rm -rf /var/lib/apt/lists/* \
+  && apt-get clean
+
+# sudo ln -s /usr/share/cmake/geographiclib/FindGeographicLib.cmake /usr/share/cmake-*/Modules/ &&\
+# sudo pip3 install -U empy pyros-genmsg setuptools jinja2
+
 # Commands below run as the developer user
 USER $USERNAME
 
 # When running a container start in the developer's home folder
 WORKDIR /home/$USERNAME
 
+## TODO: needed? Installation scripts are not launched directly and as2 utils not used...
 # install aerostack2
 RUN mkdir -p /home/${USERNAME}/aerostack2_ws/src
-
 RUN cd /home/$USERNAME/aerostack2_ws/src \
     && git clone https://github.com/aerostack2-developers/aerostack2.git
 
-#################### TODO
-# install core dependencies (WIP)
-# sudo apt update
-# # utils
-# sudo apt install tmux python3-vcstool -y
-
-# # libs
-# sudo apt install libyaml-cpp* -y &&\
-# sudo apt install libeigen3-dev -y
-
-# # python dependencies
-# sudo apt install python3-pip python3-testresources -y && \
-# sudo apt install python3-colcon-common-extensions -y
-
-# # ros2 dependencies
-
-# sudo apt install ros-${ROS_DISTRO}-ament-cmake-clang-format -y &&\
-# sudo apt install ros-${ROS_DISTRO}-eigen3-cmake-module -y &&\
-# sudo apt install ros-${ROS_DISTRO}-gazebo-ros-pkgs -y &&\
-# sudo apt install ros-${ROS_DISTRO}-geographic-msgs -y
-
-# # geographic lib
-# sudo apt install libgeographic-dev geographiclib-tools -y &&\
-# sudo ln -s /usr/share/cmake/geographiclib/FindGeographicLib.cmake /usr/share/cmake-*/Modules/ &&\
-# sudo pip3 install -U empy pyros-genmsg setuptools jinja2
-
-# # libgoogle utils
-
-# sudo apt install libgoogle-glog* -y &&\
-# sudo apt install libgflags* -y &&\
-# sudo apt install libnlopt-cxx-dev -y
-
-# # USB Drivers
-# sudo usermod -a -G dialout $USER &&\
-# sudo apt-get remove modemmanager -y &&\
-# sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-gl -y &&\
-# sudo udevadm control --reload-rules && udevadm trigger
-
 ENV AEROSTACK2_PATH /home/$USERNAME/aerostack2_ws/src/aerostack2
 ENV AEROSTACK2_WORKSPACE /home/$USERNAME/aerostack2_ws
-ENV AEROSTACK2_PROJECTS /home/$USERNAME/aerostack2_ws/src/aerostack2/projects
-# ENV PATH $PATH:$AEROSTACK2_PATH/scripts/
-        
+ENV AEROSTACK2_PROJECTS /home/$USERNAME/aerostack2_ws/src/aerostack2/projects        
 ENV AEROSTACK2_SIMULATION_DRONE_ID drone_sim_0
-        
-# RUN alias as2="source $AEROSTACK2_PATH/scripts/as2.bash"
-# enable custom AS2 bash completions
-# source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash
+ENV IGNITION_VERSION fortress
 
-###################### TODO
-# Release instalation (WIP)
+## TODO: needed?
+ENV PATH $PATH:$AEROSTACK2_PATH/scripts/
+RUN echo 'alias as2="source $AEROSTACK2_PATH/scripts/as2.bash"' >> ~/.bashrc    
+RUN echo 'source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash' >> ~/.bashrc    
 
-#############################3
+WORKDIR /home/$USERNAME/aerostack2_ws/src/aerostack2
+COPY install.repos .
+RUN vcs import --recursive < ./install.repos
+
+# RUN as2 build
+WORKDIR /home/${USERNAME}/aerostack2_ws
+
+RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
+  && colcon build --symlink-install'
+
+RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
+ && /bin/sh -c 'echo ". ~/aerostack2_ws/install/setup.bash" >> ~/.bashrc'
+
+# MBZIRC PROJECT
+WORKDIR /home/${USERNAME}/aerostack2_ws/src/aerostack2/projects/project_mbzirc
+COPY . .
+
+#############################
 # # Prepare the colcon workspace
 # RUN mkdir -p mbzirc_ws/src
 
@@ -155,9 +159,7 @@ ENV AEROSTACK2_SIMULATION_DRONE_ID drone_sim_0
 # # build mbzirc_seed
 # RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
 #   && colcon build --merge-install --packages-select ros_ign_interfaces mbzirc_seed'
-
-# RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
-#  && /bin/sh -c 'echo ". ~/mbzirc_ws/install/setup.sh" >> ~/.bashrc'
+###########################
 
 COPY docker/entrypoint.bash ./
 ENTRYPOINT ["./entrypoint.bash"]

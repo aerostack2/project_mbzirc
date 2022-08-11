@@ -13,3 +13,8 @@ docker run skyeye-team
 ```
 docker run -it --entrypoint bash skyeye-team
 ```
+
+# SUBMITING
+```
+./mbzirc_submit.bash sky-eye skyeye-team <tag> <upstream_tag> <config_file>
+```
