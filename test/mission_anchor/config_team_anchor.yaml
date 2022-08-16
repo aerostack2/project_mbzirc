@@ -1,0 +1,68 @@
+---
+- model_name: 'quadrotor_1'
+  model_type: 'mbzirc_quadrotor'
+  flight_time: 20
+  position:
+    xyz: [-1476, 21, 4.3]
+    rpy: [0, 0, 0]
+  payload:
+    slot2:
+      sensor: 'mbzirc_rf_long_range'
+      rpy: [0, 0, 0]  
+    slot3:
+      sensor: 'mbzirc_hd_camera'
+      rpy: [0, 0, 0]
+    slot6:
+      sensor: 'mbzirc_planar_lidar'
+      rpy: [0, 0, 0]      
+
+- model_name: 'quadrotor_2'
+  model_type: 'mbzirc_quadrotor'
+  flight_time: 20
+  position:
+    xyz: [-1518, -4, 4.3]
+    rpy: [0, 0, 0]
+  payload:
+    slot2:
+      sensor: 'mbzirc_rf_long_range'
+      rpy: [0, 0, 0]  
+    slot3:
+      sensor: 'mbzirc_hd_camera'
+      rpy: [0, 0, 0]
+    slot6:
+      sensor: 'mbzirc_planar_lidar'
+      rpy: [0, 0, 0]        
+      
+- model_name: 'quadrotor_3'
+  model_type: 'mbzirc_quadrotor'
+  flight_time: 20
+  position:
+    xyz: [-1500, 10, 4.3]
+    rpy: [0, 0, 0]
+  payload:
+    slot2:
+      sensor: 'mbzirc_rf_long_range'
+      rpy: [0, 0, 0]  
+    slot3:
+      sensor: 'mbzirc_hd_camera'
+      rpy: [0, 0, 0] 
+    slot6:
+      sensor: 'mbzirc_planar_lidar'
+      rpy: [0, 0, 0]        
+      
+- model_name: 'quadrotor_4'
+  model_type: 'mbzirc_quadrotor'
+  flight_time: 20
+  position:
+    xyz: [-1500, -5, 4.3]
+    rpy: [0, 0, 0]
+  payload:
+    slot2:
+      sensor: 'mbzirc_rf_long_range'
+      rpy: [0, 0, 0]  
+    slot3:
+      sensor: 'mbzirc_hd_camera'
+      rpy: [0, 0, 0]            
+    slot6:
+      sensor: 'mbzirc_planar_lidar'
+      rpy: [0, 0, 0]  
