@@ -1,0 +1,69 @@
+# reliability_override.yaml 
+/quadrotor_1/ground_truth/pose:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/ground_truth/twist:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot0/camera_info:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot0/depth:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot0/image_raw:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot0/points:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot1/rfsensor:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot2/points:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot2/scan:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot6/camera_info:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot6/depth:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot6/depth:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot6/image_raw:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot6/points:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot6/scan:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot7/points:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot7/scan:
+  reliability: best_effort
+  history: keep_last
+  depth: 5

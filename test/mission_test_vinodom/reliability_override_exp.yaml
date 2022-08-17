@@ -1,0 +1,29 @@
+# reliability_override.yaml 
+/quadrotor_1/ground_truth/pose:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/ground_truth/twist:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot3/image_raw:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot3/image_raw:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot6/scan:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/air_pressure:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/imu/data:
+  reliability: best_effort
+  history: keep_last
+  depth: 5

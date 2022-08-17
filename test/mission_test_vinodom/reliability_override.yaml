@@ -1,0 +1,17 @@
+# reliability_override.yaml 
+/quadrotor_1/ground_truth/pose:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/ground_truth/twist:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/slot6/scan:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
+/quadrotor_1/visual_odometry/odom:
+  reliability: best_effort
+  history: keep_last
+  depth: 5
