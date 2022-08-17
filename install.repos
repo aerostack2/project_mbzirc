@@ -147,3 +147,59 @@ repositories:
     type: git 
     url: https://github.com/aerostack2-developers/follow_path_plugins.git
     version: main
+
+#----------------------------------------------------------------------------
+# MBZIRC    
+#----------------------------------------------------------------------------
+
+# ---------- Messages ----------
+
+  stack/messages/mbzirc_msgs:
+    type: git 
+    url: https://github.com/sky-eye-team/mbzirc_msgs.git
+    version: main
+
+# ---------- Comms ----------
+
+  stack/comms/mbzirc_comms:
+    type: git 
+    url: https://github.com/sky-eye-team/mbzirc_comms.git
+    version: main
+
+# ---------- Localization ----------
+
+  stack/state_estimator/vinodom:
+    type: git 
+    url: https://github.com/aerostack2-developers/vinodom.git
+    version: main
+
+  stack/state_estimator/mbzirc_loc:
+    type: git 
+    url: https://github.com/sky-eye-team/mbzirc_loc.git
+    version: main
+
+# ---------- USV ----------
+
+  stack/hardware_interface/usv_radar:
+    type: git 
+    url: https://github.com/sky-eye-team/usv_radar.git
+    version: main
+
+# ---------- Planning ----------
+
+  stack/behaviours/mbzirc_bt:
+    type: git 
+    url: https://github.com/sky-eye-team/mbzirc_bt.git
+    version: main
+
+  stack/behaviours/area_planner:
+    type: git 
+    url: 
+    version: main
+
+# ---------- Detection ----------
+
+  stack/hardware_interface/yolo_object_detector:
+    type: git 
+    url: https://github.com/aerostack2-developers/yolo_object_detector.git
+    version: main
