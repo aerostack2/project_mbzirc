@@ -192,9 +192,9 @@ repositories:
     url: https://github.com/sky-eye-team/mbzirc_bt.git
     version: main
 
-  stack/behaviours/area_planner:
+  stack/behaviours/area2path:
     type: git 
-    url: 
+    url: https://github.com/sky-eye-team/area2path.git
     version: main
 
 # ---------- Detection ----------
