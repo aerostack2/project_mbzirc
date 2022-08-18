@@ -120,12 +120,12 @@ RUN apt-get update && \
     && apt-get clean
 RUN python3 -m pip install gcovr
 
-# TODO: path?
-RUN git clone https://github.com/Fields2Cover/Fields2Cover.git
-RUN cd Fields2Cover && rm -rf build && mkdir badges build coverage
-RUN cd Fields2Cover/build && cmake -DCMAKE_BUILD_TYPE=Release ..
-RUN cd Fields2Cover/build && make -j$(nproc)
-RUN cd Fields2Cover/build && make install
+# # TODO: path?
+# RUN git clone https://github.com/Fields2Cover/Fields2Cover.git
+# RUN cd Fields2Cover && rm -rf build && mkdir badges build coverage
+# RUN cd Fields2Cover/build && cmake -DCMAKE_BUILD_TYPE=Release ..
+# RUN cd Fields2Cover/build && make -j$(nproc)
+# RUN cd Fields2Cover/build && make install
 
 # mbzirc_loc --> Ceres
 RUN apt-get update && \
