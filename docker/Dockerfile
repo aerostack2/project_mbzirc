@@ -7,94 +7,161 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # Tools useful during development
 RUN apt-get update -qq \
- && apt-get install --no-install-recommends -y -qq \
-        build-essential \
-        atop \
-        cmake \
-        cppcheck \
-        expect \
-        gdb \
-        git \
-        gnutls-bin \
-        libbluetooth-dev \
-        libccd-dev \
-        libcwiid-dev \
-        libfcl-dev \
-        libgoogle-glog-dev \
-        libspnav-dev \
-        libusb-dev \
-        python3-dbg \
-        python3-empy \
-        python3-numpy \
-        python3-setuptools \
-        python3-pip \
-        python3-venv \
-        software-properties-common \
-        vim \
-        net-tools \
-        iputils-ping \
-        xvfb \
-        curl \
- && apt-get clean -qq
+    && apt-get install --no-install-recommends -y -qq \
+    build-essential \
+    atop \
+    cmake \
+    cppcheck \
+    expect \
+    gdb \
+    git \
+    gnutls-bin \
+    libbluetooth-dev \
+    libccd-dev \
+    libcwiid-dev \
+    libfcl-dev \
+    libgoogle-glog-dev \
+    libspnav-dev \
+    libusb-dev \
+    python3-dbg \
+    python3-empy \
+    python3-numpy \
+    python3-setuptools \
+    python3-pip \
+    python3-venv \
+    software-properties-common \
+    vim \
+    net-tools \
+    iputils-ping \
+    xvfb \
+    curl \
+    && apt-get clean -qq
 
 # set up ros2 repo
 RUN /bin/sh -c 'curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg' \
-  && /bin/sh -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null'
+    && /bin/sh -c 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null'
 
 # install ignition fortress
 RUN apt-get update \
-  && apt-get install -y ignition-fortress \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get clean -qq
+    && apt-get install -y ignition-fortress \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean -qq
 
 # install rosdep
 RUN apt-get update \
-  && apt install -y python3-rosdep \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get clean -qq \
-  && rosdep init \
-  && rosdep update
+    && apt install -y python3-rosdep \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean -qq
+RUN rosdep init \
+    && rosdep update
 
 # install ROS2
 RUN apt-get update \
-  && apt-get install -y ros-galactic-ros-base \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get clean -qq
+    && apt-get install -y ros-galactic-ros-base \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean -qq
 
 # install colcon
 RUN apt-get -qq update && apt-get -q -y install \
-  python3-vcstool \
-  python3-colcon-common-extensions \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get -qq clean
+    python3-vcstool \
+    python3-colcon-common-extensions \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get -qq clean
 
-# install core dependencies (WIP)
+# install AS2 core dependencies (WIP)
 RUN apt-get update && \
-  apt-get install -y \
-  tmux \
-  libyaml-cpp* \
-  libeigen3-dev \
-  python3-pip \
-  python3-testresources \
-  ros-galactic-ament-cmake-clang-format \
-  ros-galactic-eigen3-cmake-module \
-  ros-galactic-gazebo-ros-pkgs \
-  ros-galactic-geographic-msgs \
-  libgeographic-dev \
-  geographiclib-tools \
-  libgoogle-glog* \
-  libgflags* \
-  libnlopt-cxx-dev \
-  ros-galactic-behaviortree-cpp-v3 \
-  ros-galactic-nav2-behavior-tree \
-  ros-galactic-nav2-msgs \
-  ros-galactic-ros-ign-bridge \
-  ros-galactic-ros-ign-gazebo \
-  && rm -rf /var/lib/apt/lists/* \
-  && apt-get clean
+    apt-get install -y \
+    tmux \
+    libyaml-cpp* \
+    libeigen3-dev \
+    python3-pip \
+    python3-testresources \
+    ros-galactic-ament-cmake-clang-format \
+    ros-galactic-eigen3-cmake-module \
+    ros-galactic-gazebo-ros-pkgs \
+    ros-galactic-geographic-msgs \
+    libgeographic-dev \
+    geographiclib-tools \
+    libgoogle-glog* \
+    libgflags* \
+    libnlopt-cxx-dev \
+    ros-galactic-behaviortree-cpp-v3 \
+    ros-galactic-nav2-behavior-tree \
+    ros-galactic-nav2-msgs \
+    ros-galactic-ros-ign-bridge \
+    ros-galactic-ros-ign-gazebo \
+    ros-galactic-vision-msgs \
+    ros-galactic-radar-msgs \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 # sudo ln -s /usr/share/cmake/geographiclib/FindGeographicLib.cmake /usr/share/cmake-*/Modules/ &&\
 # sudo pip3 install -U empy pyros-genmsg setuptools jinja2
+
+# area2path --> Fields2Cover
+RUN add-apt-repository -y ppa:ubuntugis/ppa
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        ca-certificates \
+        cmake \
+        doxygen \
+        g++ \
+        git \
+        libeigen3-dev \
+        libgdal-dev \
+        libpython3-dev \ 
+        python3 \
+        python3-pip \
+        python3-matplotlib \
+        lcov \
+        libgtest-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+RUN python3 -m pip install gcovr
+
+# TODO: path?
+RUN git clone https://github.com/Fields2Cover/Fields2Cover.git
+RUN cd Fields2Cover && rm -rf build && mkdir badges build coverage
+RUN cd Fields2Cover/build && cmake -DCMAKE_BUILD_TYPE=Release ..
+RUN cd Fields2Cover/build && make -j$(nproc)
+RUN cd Fields2Cover/build && make install
+
+# mbzirc_loc --> Ceres
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        cmake \
+        libgoogle-glog-dev \
+        libgflags-dev \
+        libeigen3-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Use ATLAS for BLAS & LAPACK
+# RUN apt-get install libatlas-base-dev
+# SuiteSparse (optional)
+# RUN apt-get install libsuitesparse-dev
+
+RUN curl http://ceres-solver.org/ceres-solver-2.1.0.tar.gz --output ceres-solver-2.1.0.tar.gz && \
+    tar zxf ceres-solver-2.1.0.tar.gz
+RUN mkdir ceres-bin && \
+    cd ceres-bin && \
+    cmake ../ceres-solver-2.1.0
+RUN cd ceres-bin && \
+    make -j3
+# make test
+# # Optionally install Ceres, it can also be exported using CMake which
+# # allows Ceres to be used without requiring installation, see the documentation
+# # for the EXPORT_BUILD_DIR option for more information.
+RUN cd ceres-bin && \
+    make install
+
+# YOLO_OBJECT_DETECTOR --> DARKNET_VENDOR --> CUDA
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        nvidia-cuda-toolkit \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 # Commands below run as the developer user
 USER $USERNAME
@@ -104,7 +171,7 @@ WORKDIR /home/$USERNAME
 
 ## TODO: needed? Installation scripts are not launched directly and as2 utils not used...
 # install aerostack2
-RUN mkdir -p /home/${USERNAME}/aerostack2_ws/src
+RUN mkdir -p /home/${USERNAME}/aerostack2_ws/src/mbzirc
 RUN cd /home/$USERNAME/aerostack2_ws/src \
     && git clone https://github.com/aerostack2-developers/aerostack2.git
 
@@ -127,10 +194,10 @@ RUN vcs import --recursive < ./install.repos
 WORKDIR /home/${USERNAME}/aerostack2_ws
 
 RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
-  && colcon build --symlink-install'
+    && colcon build --symlink-install'
 
 RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
- && /bin/sh -c 'echo ". ~/aerostack2_ws/install/setup.bash" >> ~/.bashrc'
+    && /bin/sh -c 'echo ". ~/aerostack2_ws/install/setup.bash" >> ~/.bashrc'
 
 # MBZIRC PROJECT
 WORKDIR /home/${USERNAME}/aerostack2_ws/src/aerostack2/projects/project_mbzirc
