@@ -1,10 +1,11 @@
 
 WINDOW_ID=0
+SESSION=""
 
 function new_session() {
     SESSION=$1
-    # Create new session  (-2 allows 256 colors in the terminal, -s -> session name, -d -> not attach to the new session)
-    tmux -2 new-session -d -s $SESSION
+    # # Create new session  (-2 allows 256 colors in the terminal, -s -> session name, -d -> not attach to the new session)
+    # tmux -2 new-session -d -s $SESSION
 }
 
 function new_window() {

@@ -1,0 +1,51 @@
+---
+- model_name: 'usv'
+  model_type: 'usv'
+  position:
+    xyz: [-1462.0, -16.5, 0.3]
+    rpy: [0, 0, 0]
+
+- model_name: 'drone_1'
+  model_type: 'mbzirc_quadrotor'
+  flight_time: 60
+  position:
+    xyz: [-1476, 21, 4.3]
+    rpy: [0, 0, 0]
+  payload:
+    slot1:
+      sensor: 'mbzirc_rf_range'
+      rpy: [0, 0, 0]
+    slot3:
+      sensor: 'mbzirc_3d_lidar'
+      rpy: [90, 0, 0]
+    slot7:
+      sensor: 'mbzirc_hd_camera'
+      rpy: [0, 0, 0]
+
+- model_name: 'drone_2'
+  model_type: 'mbzirc_quadrotor'
+  flight_time: 60
+  position:
+    xyz: [-1462.0, -15.3, 0.9]
+    rpy: [0, 0, 0]
+  payload:
+    slot0:
+      sensor: 'mbzirc_hd_camera'
+      rpy: [0, 0, 0] 
+    slot1:
+      sensor: 'mbzirc_rf_range'
+      rpy: [0, 0, 0]
+    slot2:
+      sensor: 'mbzirc_3d_lidar'
+      rpy: [0, 90, 0]
+    slot3:
+      sensor: 'mbzirc_3d_lidar'
+      rpy: [90, 0, 0]
+    slot6:
+      sensor: 'mbzirc_rgbd_camera'
+      rpy: [0, 0, 0]
+    slot7:
+      sensor: 'mbzirc_hd_camera'
+      rpy: [0, 0, 0]
+  
+  gripper: mbzirc_suction_gripper_light
