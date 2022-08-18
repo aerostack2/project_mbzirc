@@ -8,7 +8,7 @@ fi
 # Arguments
 drone_namespace=$1
 
-source ../launch/launch_tools.bash
+source launch/launch_tools.bash
 
 new_session $drone_namespace
 
@@ -27,22 +27,22 @@ new_window 'visual_inertial_odometry' "ros2 launch vinodom vinodom_launch.py \
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
     drone_id:=$drone_namespace \
-    config:=config/controller_manager.yaml"
+    config:=robot_config/controller_manager.yaml"
 
 new_window 'traj_generator' "ros2 launch trajectory_generator trajectory_generator_launch.py  \
     drone_id:=$drone_namespace"
 
 new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
     drone_id:=$drone_namespace  \
-    config_takeoff:=config/takeoff.yaml"
+    config_takeoff:=robot_config/takeoff.yaml"
 
 new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
-    robot_id:=drone_1 \
+    robot_id:=$drone_namespace \
     pose:=self_localization/pose"
 
-new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc.launch.py \
+new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
-    tree:=anchor_v2.xml \
+    tree:=drone_roles/anchor_v2.xml \
     groot_logger:=false"
 
 tmux a

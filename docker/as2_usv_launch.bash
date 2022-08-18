@@ -8,7 +8,7 @@ fi
 # Arguments
 drone_namespace=$1
 
-source ../launch/launch_tools.bash
+source launch/launch_tools.bash
 
 new_session $drone_namespace
 
@@ -28,12 +28,12 @@ new_window 'traj_generator' "ros2 launch trajectory_generator trajectory_generat
 
 new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
     drone_id:=$drone_namespace \
-    config_takeoff:=../usv/takeoff.yaml \
-    config_goto:=../usv/goto.yaml"
+    config_takeoff:=usv/takeoff.yaml \
+    config_goto:=usv/goto.yaml"
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
-    tree:=../usv/usv.xml \
+    tree:=usv/usv.xml \
     groot_logger:=true \
     groot_client_port:=1668 \
     groot_server_port:=1669"
