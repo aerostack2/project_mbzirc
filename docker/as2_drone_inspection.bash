@@ -66,4 +66,4 @@ new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compress
     report_topic:=/drone_1/$REPORT_TOPIC"
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
-sleep(5000)
+sleep 5000

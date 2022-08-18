@@ -39,4 +39,4 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     groot_server_port:=1669"
 
 tmux a -t $drone_namespace
-sleep(5000)
+sleep 5000
