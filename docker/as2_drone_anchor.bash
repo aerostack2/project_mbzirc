@@ -64,3 +64,4 @@ new_window 'stream_sender' "ros2 launch mbzirc_sim_interface stream_sender_launc
 fi
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
+sleep 5000
