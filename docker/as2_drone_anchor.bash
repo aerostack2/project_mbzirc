@@ -8,9 +8,9 @@ fi
 # Arguments
 drone_namespace=$1
 
-source ../launch/launch_tools.bash
+source ./launch/launch_tools.bash
 
-new_session $drone_namespace
+new_session $drone_namespace  
 
 new_window 'ignition_interface' "ros2 launch ignition_platform ignition_platform_launch.py \
     drone_id:=$drone_namespace"
@@ -37,12 +37,16 @@ new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behavi
     config_takeoff:=config/takeoff.yaml"
 
 new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
-    robot_id:=drone_1 \
-    pose:=self_localization/pose"
+    robot_id:=$drone_namespace \
+    n_drones:=10 \
+    pose_topic:=/self_localization/pose \
+    tree_topic:=/tree \
+    loc_hist_topic:=/loc_hist \
+    report_topic:=/report "
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc.launch.py \
     drone_id:=$drone_namespace \
     tree:=anchor_v2.xml \
     groot_logger:=false"
 
-tmux a
+echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
