@@ -62,7 +62,7 @@ new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compress
     namespace:=$drone_namespace \
     rgb_image_topic:=slot0/image_raw \
     detection_topic:=detector_node/detections \
-    compressed_image_topic:=/drone1/$COMPRESSED_IMAGE_TOPIC \
-    report_topic:=/drone1/$REPORT_TOPIC"
+    compressed_image_topic:=/drone_1/$COMPRESSED_IMAGE_TOPIC \
+    report_topic:=/drone_1/$REPORT_TOPIC"
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"

@@ -54,7 +54,7 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     tree:=drone_roles/anchor_v2.xml \
     groot_logger:=false"
 
-if [[ $drone_namespace=="drone_1" ]]; then;
+if [[ "$drone_namespace"=="drone_1" ]] ; then
 
 new_window 'stream_sender' "ros2 launch mbzirc_sim_interface stream_sender_launch.py \
     namespace:=$drone_namespace \
