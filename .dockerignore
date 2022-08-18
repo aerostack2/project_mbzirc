@@ -1,5 +1,6 @@
 .vscode
 __pycache__
 
+docs/
 test/
 as2.launch.py
