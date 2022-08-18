@@ -12,6 +12,8 @@ docker run skyeye-team
 # DEBUG
 ```
 docker run -it --entrypoint bash skyeye-team
+# TEST WITH GPU
+docker run --runtime=nvidia -it --gpus all --network host --entrypoint /bin/bash skyeye-team
 ```
 
 # SUBMITING
