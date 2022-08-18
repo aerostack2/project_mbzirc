@@ -120,13 +120,6 @@ RUN apt-get update && \
     && apt-get clean
 RUN python3 -m pip install gcovr
 
-# # TODO: path?
-# RUN git clone https://github.com/Fields2Cover/Fields2Cover.git
-# RUN cd Fields2Cover && rm -rf build && mkdir badges build coverage
-# RUN cd Fields2Cover/build && cmake -DCMAKE_BUILD_TYPE=Release ..
-# RUN cd Fields2Cover/build && make -j$(nproc)
-# RUN cd Fields2Cover/build && make install
-
 # mbzirc_loc --> Ceres
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -189,6 +182,7 @@ RUN echo 'source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash' >>
 WORKDIR /home/$USERNAME/aerostack2_ws/src/aerostack2
 COPY install.repos .
 RUN vcs import --recursive < ./install.repos
+RUN rm install.repos
 
 # RUN as2 build
 WORKDIR /home/${USERNAME}/aerostack2_ws
@@ -202,31 +196,6 @@ RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
 # MBZIRC PROJECT
 WORKDIR /home/${USERNAME}/aerostack2_ws/src/aerostack2/projects/project_mbzirc
 COPY . .
-
-#############################
-# # Prepare the colcon workspace
-# RUN mkdir -p mbzirc_ws/src
-
-# # clone ros_ign bridge
-# RUN cd /home/$USERNAME/mbzirc_ws/src \
-#  && git clone https://github.com/osrf/ros_ign.git -b galactic
-
-# WORKDIR /home/$USERNAME/mbzirc_ws
-
-# COPY . src/mbzirc
-
-# ENV IGNITION_VERSION fortress
-
-# RUN sudo apt-get update \
-#   && rosdep update \
-#   && rosdep install -r --from-paths src -i -y --rosdistro galactic \
-#   && sudo rm -rf /var/lib/apt/lists/* \
-#   && sudo apt-get clean -qq
-
-# # build mbzirc_seed
-# RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
-#   && colcon build --merge-install --packages-select ros_ign_interfaces mbzirc_seed'
-###########################
 
 COPY docker/entrypoint.bash ./
 ENTRYPOINT ["./entrypoint.bash"]

@@ -92,7 +92,7 @@ repositories:
   stack/user_interface/behaviour_tress:
     type: git 
     url: https://github.com/aerostack2-developers/behaviour_trees.git
-    version: main
+    version: pluginization
 
 #----------------------------------------------------------------------------
 # Behaviours    
@@ -165,6 +165,16 @@ repositories:
     type: git 
     url: https://github.com/sky-eye-team/mbzirc_comms.git
     version: main
+
+  stack/comms/mbzirc_sim_interface:
+    type: git 
+    url: https://github.com/sky-eye-team/mbzirc_sim_interface.git
+    version: main
+
+  stack/comms/ros_ign:
+    type: git 
+    url: https://github.com/osrf/ros_ign.git
+    version: galactic
 
 # ---------- Localization ----------
 
