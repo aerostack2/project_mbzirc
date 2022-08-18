@@ -20,3 +20,8 @@ docker run --runtime=nvidia -it --gpus all --network host --entrypoint /bin/bash
 ```
 ./mbzirc_submit.bash sky-eye skyeye-team <tag> <upstream_tag> <config_file>
 ```
+
+# LOGS
+```
+aws s3 sync s3://cloudsim-mbzirc-logs/sky-eye/ logs
+```
