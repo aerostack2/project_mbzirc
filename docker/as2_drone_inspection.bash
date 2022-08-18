@@ -54,13 +54,15 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     tree:=drone_roles/anchor_v2.xml \
     groot_logger:=false"
 
-if [[ $drone_namespace=="drone_1" ]]; then;
+new_window 'yolo_detector' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
+  drone_id:=$drone_namespace \
+  camera_topic:=slot0/image_raw"
 
-new_window 'stream_sender' "ros2 launch mbzirc_sim_interface stream_sender_launch.py \
+new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compressor_launch.py \
     namespace:=$drone_namespace \
-    compressed_image_topic:=$COMPRESSED_IMAGE_TOPIC \
-    report_topic:=$REPORT_TOPIC"
-
-fi
+    rgb_image_topic:=slot0/image_raw \
+    detection_topic:=detector_node/detections \
+    compressed_image_topic:=/drone1/$COMPRESSED_IMAGE_TOPIC \
+    report_topic:=/drone1/$REPORT_TOPIC"
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
