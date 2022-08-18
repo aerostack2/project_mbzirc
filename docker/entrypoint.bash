@@ -7,12 +7,10 @@ fi
 
 vehicle_name="$1"
 
-DIR_SCRIPT="${0%/*}"
-
 if [[ $vehicle_name == "usv" ]]; then
-    ${DIR_SCRIPT}/as2_usv_launch.bash $vehicle_name
+    ./docker/as2_usv_launch.bash $vehicle_name
 elif [[ $vehicle_name =~ ^drone_[0-9]+$ ]]; then
-    ${DIR_SCRIPT}/as2_drone_anchor.bash $vehicle_name
+    ./docker/as2_drone_anchor.bash $vehicle_name
 # elif [[ $vehicle_name == "drone_2" ]]; then
 #     ${DIR_SCRIPT}/test.bash "Anchor 2"
 # elif [[ $vehicle_name == "drone_3" ]]; then
