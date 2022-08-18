@@ -51,7 +51,7 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
-    tree:=drone_roles/anchor_v2.xml \
+    tree:=drone_roles/anchor_$drone_namespace.xml \
     groot_logger:=false"
 
 new_window 'yolo_detector' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
