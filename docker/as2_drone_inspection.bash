@@ -16,32 +16,39 @@ declare -r REPORT_TOPIC='report'
 new_session $drone_namespace  
 
 new_window 'ignition_interface' "ros2 launch ignition_platform ignition_platform_launch.py \
+    use_sim_time:=true \
     drone_id:=$drone_namespace"
 
 new_window 'state_estimator' "ros2 launch basic_state_estimator basic_state_estimator_launch.py \
     drone_id:=$drone_namespace \
+    use_sim_time:=true \
     ground_truth:=false \
     odom_only:=true \
     base_frame:='\"\"'"
 
 new_window 'visual_inertial_odometry' "ros2 launch vinodom vinodom_launch.py \
     namespace:=$drone_namespace \
+    use_sim_time:=true \
     base_frame:=$drone_namespace \
     show_matching:=false"
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
     drone_id:=$drone_namespace \
+    use_sim_time:=true \
     config:=robot_config/controller_manager.yaml"
 
 new_window 'traj_generator' "ros2 launch trajectory_generator trajectory_generator_launch.py  \
+    use_sim_time:=true \
     drone_id:=$drone_namespace"
 
 new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
     drone_id:=$drone_namespace  \
+    use_sim_time:=true \
     config_takeoff:=robot_config/takeoff.yaml"
 
 new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     robot_id:=$drone_namespace \
+    use_sim_time:=true \
     n_drones:=10 \
     pose_topic:=/self_localization/pose \
     tree_topic:=/tree \
@@ -51,15 +58,18 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
+    use_sim_time:=true \
     tree:=drone_roles/anchor_$drone_namespace.xml \
     groot_logger:=false"
 
 new_window 'yolo_detector' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
   drone_id:=$drone_namespace \
+  use_sim_time:=true \
   camera_topic:=slot0/image_raw"
 
 new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compressor_launch.py \
     namespace:=$drone_namespace \
+    use_sim_time:=true \
     rgb_image_topic:=slot0/image_raw \
     detection_topic:=detector_node/detections \
     compressed_image_topic:=/drone_1/$COMPRESSED_IMAGE_TOPIC \
