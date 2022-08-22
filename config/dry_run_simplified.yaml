@@ -22,7 +22,7 @@
       sensor: 'mbzirc_hd_camera'
       rpy: [0, 0, 0]
 
-- model_name: 'drone_2'
+- model_name: 'drone_5'
   model_type: 'mbzirc_quadrotor'
   flight_time: 60
   position:
