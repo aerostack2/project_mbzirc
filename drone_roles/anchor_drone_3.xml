@@ -10,9 +10,9 @@
     </BehaviorTree>
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
-        <Delay delay_msec="180000">
+        <Delay delay_msec="3000">
             <Sequence>
-                <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="5" tk_speed="0.5"/>
+                <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="10" tk_speed="1.5"/>
                 <Action ID="GoTo" max_speed="2" pose="-1500;510;30.0" yaw_angle="0.0" yaw_mode="0"/>
                 <Decorator ID="WaitForEvent" name="MissionEnd" result="" topic_name="mission/end">
                     <SubTree ID="RTL" __shared_blackboard="true" pose="-1500;10;4.3"/>
