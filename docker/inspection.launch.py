@@ -155,8 +155,8 @@ def generate_launch_description():
             'use_sim_time': 'true',
             'rgb_image_topic': 'slot0/image_raw',
             'detection_topic': 'detector_node/detections',
-            'compressed_image_topic': '/drone_1/'+LaunchConfiguration('camera_topic'), # TODO: ojo, revisar si esto funciona
-            'report_topic': '/drone_1/'+LaunchConfiguration('report_topic')
+            'compressed_image_topic': '/drone_1/stream/compressed_image', # TODO: ojo, revisar si esto funciona
+            'report_topic': '/drone_1/report'
         }.items()
     )
 
