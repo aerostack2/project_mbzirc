@@ -7,6 +7,9 @@ fi
 
 # Arguments
 drone_namespace=$1
+init_x=$2
+init_y=$3
+init_z=$4
 
 source ./launch/launch_tools.bash
 
@@ -30,7 +33,10 @@ new_window 'visual_inertial_odometry' "ros2 launch vinodom vinodom_launch.py \
     namespace:=$drone_namespace \
     use_sim_time:=true \
     base_frame:=$drone_namespace \
-    show_matching:=false"
+    show_matching:=false \
+    init_x:=$init_x \
+    init_y:=$init_y \
+    init_z:=$init_z"
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
     drone_id:=$drone_namespace \

@@ -142,7 +142,8 @@ def generate_launch_description():
         launch_arguments={
             'drone_id': LaunchConfiguration('drone_id'),
             'use_sim_time': 'true',
-            'camera_topic': 'slot0/image_raw'
+            'camera_topic': 'slot0/image_raw',
+            'config': '/home/developer/aerostack2_ws/install/yolo_object_detector/share/yolo_object_detector/config/darknet_params.yaml'
         }.items()
     )
 
