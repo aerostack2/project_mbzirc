@@ -196,16 +196,16 @@ RUN rm install.repos
 WORKDIR /home/${USERNAME}/aerostack2_ws
 
 RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
-    && colcon build --symlink-install && echo "Build successfully"'
+    && colcon build --symlink-install && echo "Build successfully "'
 
-RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
+RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc ' \
     && /bin/sh -c 'echo ". ~/aerostack2_ws/install/setup.bash" >> ~/.bashrc'
 
 # MBZIRC PROJECT
 WORKDIR /home/${USERNAME}/aerostack2_ws/src/aerostack2/projects/project_mbzirc
 COPY . .
 
-COPY docker/entrypoint.bash ./
+COPY docker/entrypoint_tmux.bash ./entrypoint.bash
 RUN sudo rm install.repos.secret
 ENTRYPOINT ["./entrypoint.bash"]
 
