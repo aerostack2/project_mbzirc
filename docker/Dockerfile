@@ -156,6 +156,14 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
+# RUN add-apt-repository ppa:graphics-drivers \
+#     && apt-key del 7fa2af80 \
+#     && apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/3bf863cc.pub \
+#     && bash -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list' \
+#     && apt update && apt install cuda-11-5  -y \
+#     && rm -rf /var/lib/apt/lists/* \
+#     && apt-get clean
+
 # Commands below run as the developer user
 USER $USERNAME
 
@@ -181,14 +189,14 @@ RUN echo 'source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash' >>
 
 WORKDIR /home/$USERNAME/aerostack2_ws/src/aerostack2
 COPY install.repos.secret ./install.repos
-RUN vcs import --recursive < ./install.repos
+RUN vcs import --recursive < ./install.repos && echo "imported"
 RUN rm install.repos
 
 # RUN as2 build
 WORKDIR /home/${USERNAME}/aerostack2_ws
 
 RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
-    && colcon build --symlink-install'
+    && colcon build --symlink-install && echo "Build successfully"'
 
 RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc' \
     && /bin/sh -c 'echo ". ~/aerostack2_ws/install/setup.bash" >> ~/.bashrc'
@@ -200,3 +208,8 @@ COPY . .
 COPY docker/entrypoint.bash ./
 RUN sudo rm install.repos.secret
 ENTRYPOINT ["./entrypoint.bash"]
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/cuda-10.1/compat/
+
