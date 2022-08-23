@@ -61,7 +61,7 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     use_sim_time:=true \
     tree:=drone_roles/anchor_$drone_namespace.xml \
     groot_logger:=false \
-    server_timeout:=30000""
+    server_timeout:=30000 "
 
 new_window 'yolo_detector' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
   drone_id:=$drone_namespace \
@@ -77,4 +77,12 @@ new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compress
     report_topic:=/drone_1/$REPORT_TOPIC"
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
-sleep 5000
+
+# trap ctrl-c and call ctrl_c()
+trap ctrl_c INT
+
+function ctrl_c() {
+        send_ctrl_c_tmux_session "$drone_namespace"
+}
+
+sleep 10000

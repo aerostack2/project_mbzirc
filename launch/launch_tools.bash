@@ -25,3 +25,23 @@ function new_window() {
   fi
   WINDOW_ID=$((WINDOW_ID+1))
 }
+
+function send_ctrl_c_tmux_session() {
+    session_name=$1
+
+    if [ -z "$session_name" ]; then
+        echo "Usage: $0 <session_name>"
+        exit 1
+    fi
+
+    windows=$(tmux list-windows -t "$session_name" | awk '{print $1}'| tr -d ':')
+    for window in $windows; do
+        # tmux kill-window -t "$session_name:$window"
+        echo "Killed window $window"
+        tmux send-keys -t "$session_name:$window" "C-c"
+    done
+    n_windows=$(tmux list-windows -t "$session_name" | wc -l)
+    sleep "$n_windows"
+    tmux kill-session -t "$session_name"
+}
+
