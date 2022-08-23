@@ -38,7 +38,9 @@ function send_ctrl_c_tmux_session() {
     for window in $windows; do
         # tmux kill-window -t "$session_name:$window"
         echo "Killed window $window"
-        tmux send-keys -t "$session_name:$window" "C-c"
+        tmux send-keys -t "$session_name:$window" C-c
+        tmux send-keys -t "$session_name:$window" "echo 'Killed window $window'" C-m
+        # tmux send-keys -t "$session_name:$window" C-c
     done
     n_windows=$(tmux list-windows -t "$session_name" | wc -l)
     sleep "$n_windows"

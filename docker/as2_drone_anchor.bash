@@ -74,11 +74,3 @@ fi
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
 
-# trap ctrl-c and call ctrl_c()
-trap ctrl_c INT
-
-function ctrl_c() {
-        send_ctrl_c_tmux_session "$drone_namespace"
-}
-
-sleep 10000

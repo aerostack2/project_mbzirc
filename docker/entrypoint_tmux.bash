@@ -5,7 +5,19 @@ if [ "$#" -ne 1 ]; then
 	exit 1
 fi
 
+
+source launch/launch_tools.bash
+
 vehicle_name="$1"
+
+trap ctrl_c INT SIGINT TERM SIGTERM 
+
+function ctrl_c() {
+  echo "** Trapped CTRL-C"
+  send_ctrl_c_tmux_session $vehicle_name
+  exit 0
+}
+
 
 if [[ $vehicle_name == "usv" ]]; then
     ./docker/as2_usv_launch.bash $vehicle_name
@@ -28,3 +40,8 @@ elif [[ $vehicle_name == "drone_6" ]]; then
 else
     echo "Vehicle not recognised."
 fi
+
+echo "Waiting"
+for i in {1..10000}; do
+  sleep 1
+done
