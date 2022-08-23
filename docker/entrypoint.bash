@@ -7,6 +7,9 @@ fi
 
 vehicle_name="$1"
 
+source /opt/ros/galactic/setup.bash
+source ~/aerostack2_ws/install/setup.bash
+
 if [[ $vehicle_name == "usv" ]]; then
     # ./docker/as2_usv_launch.bash $vehicle_name
     ros2 launch docker/usv.launch.py drone_id:=usv tree:=usv/usv.xml init_x:=-1462.0 init_y:=-16.5 init_z:=0.3
