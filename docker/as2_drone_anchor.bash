@@ -8,8 +8,11 @@ fi
 # Arguments
 drone_namespace=$1
 init_x=$2
+init_x=${init_x:=0.0}
 init_y=$3
+init_y=${init_y:=0.0}
 init_z=$4
+init_z=${init_z:=0.0}
 
 source ./launch/launch_tools.bash
 
@@ -65,8 +68,7 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
     use_sim_time:=true \
     tree:=drone_roles/anchor_$drone_namespace.xml \
-    groot_logger:=false \
-    server_timeout:=30000"
+    groot_logger:=false"
 
 if [[ $drone_namespace == "drone_1" ]] ; then
 
