@@ -82,7 +82,7 @@
   payload:
     slot0:
       sensor: 'mbzirc_hd_camera'
-      rpy: [0, 25, 0]
+      rpy: [0, 0, 0]
     slot1:
       sensor: 'mbzirc_rf_range'
       rpy: [0, 0, 0]
@@ -110,7 +110,7 @@
   payload:
     slot0:
       sensor: 'mbzirc_hd_camera'
-      rpy: [0, 25, 0]
+      rpy: [0, 0, 0]
     slot1:
       sensor: 'mbzirc_rf_range'
       rpy: [0, 0, 0]
