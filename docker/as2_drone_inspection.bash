@@ -13,7 +13,8 @@ init_z=$4
 
 source ./launch/launch_tools.bash
 
-declare -r COMPRESSED_IMAGE_TOPIC='stream/compressed_image'
+# declare -r COMPRESSED_IMAGE_TOPIC='stream/compressed_image'
+declare -r COMPRESSED_IMAGE_TOPIC='/image'
 declare -r REPORT_TOPIC='report'
 
 new_session $drone_namespace  
@@ -56,10 +57,12 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     robot_id:=$drone_namespace \
     use_sim_time:=true \
     n_drones:=10 \
-    pose_topic:=/self_localization/pose \
+    pose_topic:=pose \
     tree_topic:=/tree \
-    camera_topic:=/$COMPRESSED_IMAGE_TOPIC\
+    image_topic:=$COMPRESSED_IMAGE_TOPIC\
+    image_destination:=drone_1 \
     loc_hist_topic:=/loc_hist \
+    send_times:=3 \
     report_topic:=/$REPORT_TOPIC "
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
@@ -79,7 +82,10 @@ new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compress
     use_sim_time:=true \
     rgb_image_topic:=slot0/image_raw \
     detection_topic:=detector_node/detections \
-    compressed_image_topic:=/drone_1/$COMPRESSED_IMAGE_TOPIC \
+    compressed_image_topic:=$COMPRESSED_IMAGE_TOPIC \
+    resize_image:=true \
+    resize_image_factor:=0.1 \
+    pub_rate:=0.5 \
     report_topic:=/drone_1/$REPORT_TOPIC"
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"

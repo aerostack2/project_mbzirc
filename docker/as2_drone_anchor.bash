@@ -16,7 +16,8 @@ init_z=${init_z:=0.0}
 
 source ./launch/launch_tools.bash
 
-declare -r COMPRESSED_IMAGE_TOPIC='stream/compressed_image'
+# declare -r COMPRESSED_IMAGE_TOPIC='stream/compressed_image'
+declare -r COMPRESSED_IMAGE_TOPIC='/image'
 declare -r REPORT_TOPIC='report'
 
 new_session $drone_namespace  
@@ -58,10 +59,12 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     robot_id:=$drone_namespace \
     use_sim_time:=true \
     n_drones:=10 \
-    pose_topic:=/self_localization/pose \
+    pose_topic:=pose \
     tree_topic:=/tree \
-    camera_topic:=/$COMPRESSED_IMAGE_TOPIC\
+    image_topic:=$COMPRESSED_IMAGE_TOPIC\
+    image_destination:=drone_1 \
     loc_hist_topic:=/loc_hist \
+    send_times:=3 \
     report_topic:=/$REPORT_TOPIC "
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
