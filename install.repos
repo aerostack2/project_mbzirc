@@ -57,7 +57,7 @@ repositories:
   stack/motion_control/trajectory_generator:
      type: git 
      url: https://github.com/aerostack2-developers/trajectory_generator.git
-     version: main
+     version: start_stop
  
 #----------------------------------------------------------------------------
 # Hardware Interface 
@@ -110,7 +110,7 @@ repositories:
     version: main
 
   stack/behaviours/take_off/takeoff_plugins:
-    type: git 
+    type: mbzirc_simulation_docker 
     url: https://github.com/aerostack2-developers/takeoff_plugins.git
     version: main
 
@@ -123,7 +123,7 @@ repositories:
   stack/behaviours/land/land_plugins:
     type: git 
     url: https://github.com/aerostack2-developers/land_plugins.git
-    version: main
+    version: mbzirc_simulation_docker
 
 # ---------- Go To ----------
   stack/behaviours/go_to/goto_behaviour:
@@ -134,7 +134,7 @@ repositories:
   stack/behaviours/go_to/goto_plugins:
     type: git 
     url: https://github.com/aerostack2-developers/goto_plugins.git
-    version: main
+    version: mbzirc_simulation_docker
  
 # ---------- Follow path ----------
   
@@ -146,7 +146,7 @@ repositories:
   stack/behaviours/follow_path/follow_path_plugins:
     type: git 
     url: https://github.com/aerostack2-developers/follow_path_plugins.git
-    version: main
+    version: mbzirc_simulation_docker
 
 #----------------------------------------------------------------------------
 # MBZIRC    
