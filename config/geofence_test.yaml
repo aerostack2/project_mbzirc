@@ -1,7 +1,7 @@
 ---
 - model_name: 'drone_1'
   model_type: 'mbzirc_quadrotor'
-  flight_time: 20
+  flight_time: 60
   position:
     xyz: [-1495, 20, 4.3]
     rpy: [0, 0, 0]
@@ -14,11 +14,11 @@
       rpy: [90, 0, 0]
     slot7:
       sensor: 'mbzirc_hd_camera'
-      rpy: [0, 0, 0]           
+      rpy: [0, 0, 0]
       
 - model_name: 'drone_3'
   model_type: 'mbzirc_quadrotor'
-  flight_time: 20
+  flight_time: 60
   position:
     xyz: [-1495, -20, 4.3]
     rpy: [0, 0, 0]
