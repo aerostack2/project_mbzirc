@@ -51,7 +51,7 @@ new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behavi
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
     use_sim_time:=true \
-    tree:=./follow_path_test_real.xml \
+    tree:=./ez_pick.xml \
     groot_logger:=true "
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
