@@ -7,6 +7,12 @@ fi
 
 # Arguments
 drone_namespace=$1
+init_x=$2
+init_x=${init_x:=0.0}
+init_y=$3
+init_y=${init_y:=0.0}
+init_z=$4
+init_z=${init_z:=0.0}
 
 source launch/launch_tools.bash
 
