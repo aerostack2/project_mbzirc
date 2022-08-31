@@ -21,18 +21,18 @@ new_window 'ignition_interface' "ros2 launch ignition_platform ignition_platform
 new_window 'state_estimator' "ros2 launch basic_state_estimator basic_state_estimator_launch.py \
     drone_id:=$drone_namespace \
     use_sim_time:=true \
-    ground_truth:=true \
-    odom_only:=false \
+    ground_truth:=false \
+    odom_only:=true \
     base_frame:='\"\"'"
 
-# new_window 'visual_inertial_odometry' "ros2 launch vinodom vinodom_launch.py \
-#     namespace:=$drone_namespace \
-#     use_sim_time:=true \
-#     base_frame:=$drone_namespace \
-#     show_matching:=false \
-#     init_x:=$init_x \
-#     init_y:=$init_y \
-#     init_z:=$init_z"
+new_window 'visual_inertial_odometry' "ros2 launch vinodom vinodom_launch.py \
+    namespace:=$drone_namespace \
+    use_sim_time:=true \
+    base_frame:=$drone_namespace \
+    show_matching:=false \
+    init_x:=$init_x \
+    init_y:=$init_y \
+    init_z:=$init_z"
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
     drone_id:=$drone_namespace \
