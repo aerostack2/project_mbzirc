@@ -58,7 +58,7 @@ new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behavi
 new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     robot_id:=$drone_namespace \
     use_sim_time:=true \
-    n_drones:=10 \
+    n_drones:=12 \
     pose_topic:=pose \
     tree_topic:=/tree \
     image_topic:=$COMPRESSED_IMAGE_TOPIC\
