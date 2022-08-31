@@ -10,7 +10,7 @@
     </BehaviorTree>
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
-        <Decorator ID="WaitForEvent" result="{center}" topic_name="/drone_9/event">
+        <Decorator ID="WaitForEvent" result="{center}" topic_name="/drone_6/event">
             <Sequence>
                 <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="5" tk_speed="0.5"/>
                 <Action ID="AreaPlanner" name="Area2Path" output_path_topic_name="planner/path" polygon_center="{center}"/>
