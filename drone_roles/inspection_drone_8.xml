@@ -10,10 +10,10 @@
     </BehaviorTree>
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
-        <Decorator ID="WaitForEvent" result="{polygon_center}" topic_name="/drone_8/event">
+        <Decorator ID="WaitForEvent" result="{center}" topic_name="/drone_8/event">
             <Sequence>
                 <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="5" tk_speed="0.5"/>
-                <Action ID="AreaPlanner" name="Area2Path" output_path_topic_name="planner/path" polygon_center="{polygon_center}"/>
+                <Action ID="AreaPlanner" name="Area2Path" output_path_topic_name="planner/path" polygon_center="{center}"/>
                 <Parallel failure_threshold="1" success_threshold="1">
                     <Condition ID="IsTargetDetected" dist_threshold="" name="IsVesselDetected" pose="{boat_pose}" topic_name="/phase"/>
                     <Action ID="FollowPath" name="FollowAreaPath" path_topic_name="planner/path" speed="3" yaw_mode="0"/>
@@ -55,14 +55,19 @@
         <Action ID="Disarm">
             <input_port default="set_arming_state" name="service_name">Arming service name</input_port>
         </Action>
+        <Action ID="Earth2Rectified">
+            <input_port name="earth_pose"/>
+            <output_port name="rectified_pose"/>
+        </Action>
         <Action ID="Echo">
             <input_port name="data"/>
         </Action>
         <Action ID="FollowObject"/>
         <Action ID="FollowPath">
-            <input_port default="path" name="path_topic_name"/>
-            <input_port default="1.0" name="speed"/>
-            <input_port default="0" name="yaw_mode"/>
+            <input_port name="path_topic_name">Topic where the path will be published</input_port>
+            <input_port default="traj_gen/send_traj_wayp" name="service_name">Service name to create new trajectory</input_port>
+            <input_port name="speed">Maximum speed</input_port>
+            <input_port default="0" name="yaw_mode">Yaw mode</input_port>
         </Action>
         <Action ID="GoTo">
             <input_port name="max_speed">Maximum cruise speed</input_port>
@@ -84,14 +89,20 @@
         <Action ID="Offboard">
             <input_port default="set_offboard_mode" name="service_name">Offboard service name</input_port>
         </Action>
-        <Action ID="Pick">
-            <input_port name="target_pose_topic_name">Target position </input_port>
-        </Action>
+        <Action ID="Pick"/>
         <SubTree ID="PickObject"/>
         <SubTree ID="RTL">
             <input_port default="false" name="__shared_blackboard">If false (default), the Subtree has an isolated blackboard and needs port remapping</input_port>
             <input_port default="{pose}" name="pose">Launch pose</input_port>
         </SubTree>
+        <Action ID="RadarSearch">
+            <output_port name="drone_id"/>
+            <output_port name="vessel_pose"/>
+        </Action>
+        <Action ID="Search">
+            <output_port name="drone_topic"/>
+            <output_port name="pose"/>
+        </Action>
         <SubTree ID="SearchInArea"/>
         <Action ID="SendEvent">
             <input_port name="data">Data to send</input_port>
@@ -101,9 +112,7 @@
             <input_port default="2" name="height">Takeoff Height</input_port>
             <input_port default="0.5" name="speed">Takeoff Speed</input_port>
         </Action>
-        <Action ID="UnPick">
-            <input_port name="target_pose_topic_name"/>
-        </Action>
+        <Action ID="UnPick"/>
         <SubTree ID="UnPickObject"/>
         <Decorator ID="WaitForEvent">
             <output_port name="result">Result</output_port>
