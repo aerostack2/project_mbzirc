@@ -66,8 +66,10 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     image_topic:=$COMPRESSED_IMAGE_TOPIC\
     image_destination:=drone_4 \
     loc_hist_topic:=/loc_hist \
-    send_times:=3 \
-    report_topic:=/$REPORT_TOPIC "
+    send_times:=5 \
+    report_topic:=/$REPORT_TOPIC \
+    event_topic:=/event \
+    phase_topic:=/phase "
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
