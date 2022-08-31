@@ -18,6 +18,9 @@ uav_type=${uav_type:=0}
 
 source launch/launch_tools.bash
 
+declare -r COMPRESSED_IMAGE_TOPIC='/image'
+declare -r REPORT_TOPIC='report'
+
 new_session $drone_namespace
 
 new_window 'ignition_interface' "ros2 launch usv_ign_platform usv_ign_platform.py \
