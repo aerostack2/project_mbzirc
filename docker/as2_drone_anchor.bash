@@ -13,6 +13,8 @@ init_y=$3
 init_y=${init_y:=0.0}
 init_z=$4
 init_z=${init_z:=0.0}
+uav_type=$5
+uav_type=${uav_type:=0}
 
 source ./launch/launch_tools.bash
 
@@ -72,6 +74,17 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     use_sim_time:=true \
     tree:=drone_roles/anchor_$drone_namespace.xml \
     groot_logger:=false"
+
+new_window 'localization' "roslaunch mbzirc_loc mbzirc_loc_launch.launch \
+    robot_id:=$drone_namespace \
+    odom_topic:=sensor_measurements/odom \
+    range_topic:=slot1/rfsensor \
+    pose_topic:=global_localization/pose \
+    globloc_topic:=/loc_hist \
+    pose_type:=$uav_type \
+    global_frame:=earth_rectified \
+    use_sim_time:=true"
+
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
 
