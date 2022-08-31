@@ -76,9 +76,7 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
     use_sim_time:=true \
-    tree:=drone_roles/inspection_$drone_namespace.xml \
-    groot_logger:=false \
-    server_timeout:=30000 "
+    tree:=drone_roles/inspection_$drone_namespace.xml"
 
 new_window 'area2path' "ros2 launch area2path area_to_path_launch.py \
     drone_id:=$drone_namespace \
