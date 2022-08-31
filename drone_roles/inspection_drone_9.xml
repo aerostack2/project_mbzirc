@@ -2,69 +2,44 @@
 <root main_tree_to_execute="BehaviorTree">
     <!-- ////////// -->
     <BehaviorTree ID="ArmTakeoff">
-        <Sequence>
+        <SequenceStar>
             <Action ID="Arm" service_name="set_arming_state"/>
             <Action ID="Offboard" service_name="set_offboard_mode"/>
-            <Action ID="TakeOff" height="0" speed="0.5"/>
-        </Sequence>
+            <Action ID="TakeOff" height="20" speed="2"/>
+        </SequenceStar>
     </BehaviorTree>
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
-        <Sequence>
-            <SubTree ID="ArmTakeoff" __shared_blackboard="false" tk_height="2" tk_speed="0.5"/>
-            <Action ID="GoTo" max_speed="6" name="Undock" pose="-1440;-16.5;0" yaw_angle="0.0" yaw_mode="0"/>
-            <ForceSuccess>
-                <KeepRunningUntilFailure>
-                    <IfThenElse>
-                        <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose}"/>
-                        <Sequence>
-                            <Action ID="SendEvent" data="{pose}" name="SendInspection" topic_name="{topic}"/>
-                            <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose}" topic_name="/usv/event">
-                                <IfThenElse>
-                                    <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose}" value_B="0;0;0">
-                                        <AlwaysFailure name="DetectionFalse"/>
-                                    </BlackboardCheckString>
-                                    <Sequence>
-                                        <Action ID="GoTo" max_speed="6" name="GoToVessel" pose="{vessel_pose}" yaw_angle="0.0" yaw_mode="0"/>
-                                        <Decorator ID="WaitForEvent" result="" topic_name="mission/rtl">
-                                            <AlwaysSuccess/>
-                                        </Decorator>
-                                    </Sequence>
-                                    <AlwaysSuccess name="TryNextRadarSearch"/>
-                                </IfThenElse>
-                            </Decorator>
-                        </Sequence>
-                        <AlwaysFailure name="NoRadarSearch"/>
-                    </IfThenElse>
-                </KeepRunningUntilFailure>
-            </ForceSuccess>
-            <Action ID="GoTo" max_speed="6" name="MidPoint" pose="-1000;0;0" yaw_angle="0.0" yaw_mode="0"/>
-            <ForceSuccess>
-                <KeepRunningUntilFailure>
-                    <IfThenElse>
-                        <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose}"/>
-                        <Sequence>
-                            <Action ID="SendEvent" data="{pose}" name="SendInspection" topic_name="{topic}"/>
-                            <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose}" topic_name="/usv/event">
-                                <IfThenElse>
-                                    <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose}" value_B="0;0;0">
-                                        <AlwaysFailure name="DetectionFalse"/>
-                                    </BlackboardCheckString>
-                                    <Sequence>
-                                        <Action ID="GoTo" max_speed="6" pose="{vessel_pose}" yaw_angle="0.0" yaw_mode="0"/>
-                                        <Decorator ID="WaitForEvent" result="" topic_name="mission/rtl">
-                                            <AlwaysSuccess/>
-                                        </Decorator>
-                                    </Sequence>
-                                    <AlwaysSuccess name="TryNextRadar"/>
-                                </IfThenElse>
-                            </Decorator>
-                        </Sequence>
-                        <AlwaysFailure name="NoRadarSearch"/>
-                    </IfThenElse>
-                </KeepRunningUntilFailure>
-            </ForceSuccess>
-        </Sequence>
+        <Decorator ID="WaitForEvent" result="{center}" topic_name="/drone_9/event">
+            <Sequence>
+                <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="5" tk_speed="0.5"/>
+                <Action ID="AreaPlanner" name="Area2Path" output_path_topic_name="planner/path" polygon_center="{center}"/>
+                <Parallel failure_threshold="1" success_threshold="1">
+                    <Sequence>
+                        <Condition ID="IsTargetDetected" dist_threshold="" name="IsVesselDetected" pose="{vessel}" topic_name="vessel_target/computed"/>
+                        <Action ID="SendEvent" data="{vessel}" topic_name="/usv/event"/>
+                    </Sequence>
+                    <Action ID="FollowPath" name="FollowAreaPath" path_topic_name="planner/path" pose_topic_name="planner/empty" service_name="traj_gen/send_traj_wayp" speed="3.0" yaw_mode="0"/>
+                </Parallel>
+                <Parallel failure_threshold="1" success_threshold="1">
+                    <Condition ID="IsTargetDetected" dist_threshold="" name="IsPackageDetected" pose="{object}" topic_name="object_pose"/>
+                    <Action ID="FollowPath" name="FollowVessel" path_topic_name="planner/empty2" pose_topic_name="vessel_target/computed" service_name="traj_gen/send_traj_wayp" speed="1.0" yaw_mode="0"/>
+                </Parallel>
+                <Action ID="Pick"/>
+                <Action ID="UnPick"/>
+                <Decorator ID="WaitForEvent" name="MissionEnd" result="{land_pose}" topic_name="mission/end">
+                    <AlwaysSuccess/>
+                </Decorator>
+            </Sequence>
+        </Decorator>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <BehaviorTree ID="RTL">
+        <SequenceStar>
+            <Action ID="GoTo" max_speed="2" pose="{land_pose}" yaw_angle="0.0" yaw_mode="0"/>
+            <Action ID="Land" speed="0.5"/>
+            <Action ID="Disarm" service_name="set_arming_state"/>
+        </SequenceStar>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>

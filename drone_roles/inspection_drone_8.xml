@@ -15,12 +15,15 @@
                 <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="5" tk_speed="0.5"/>
                 <Action ID="AreaPlanner" name="Area2Path" output_path_topic_name="planner/path" polygon_center="{center}"/>
                 <Parallel failure_threshold="1" success_threshold="1">
-                    <Condition ID="IsTargetDetected" dist_threshold="" name="IsVesselDetected" pose="{boat_pose}" topic_name="/phase"/>
-                    <Action ID="FollowPath" name="FollowAreaPath" path_topic_name="planner/path" pose_topic_name="planner/pose" service_name="traj_gen/send_traj_wayp" speed="3" yaw_mode="0"/>
+                    <Sequence>
+                        <Condition ID="IsTargetDetected" dist_threshold="" name="IsVesselDetected" pose="{vessel}" topic_name="vessel_target/computed"/>
+                        <Action ID="SendEvent" data="{vessel}" topic_name="/usv/event"/>
+                    </Sequence>
+                    <Action ID="FollowPath" name="FollowAreaPath" path_topic_name="planner/path" pose_topic_name="planner/empty" service_name="traj_gen/send_traj_wayp" speed="3.0" yaw_mode="0"/>
                 </Parallel>
                 <Parallel failure_threshold="1" success_threshold="1">
-                    <Condition ID="IsTargetDetected" dist_threshold="" name="IsPackageDetected" pose="" topic_name="package_detection"/>
-                    <Action ID="FollowPath" name="FollowVessel" path_topic_name="VESSEL_TARGET" pose_topic_name="vessel_target" service_name="traj_gen/send_traj_wayp" speed="1.0" yaw_mode="0"/>
+                    <Condition ID="IsTargetDetected" dist_threshold="" name="IsPackageDetected" pose="{object}" topic_name="object_pose"/>
+                    <Action ID="FollowPath" name="FollowVessel" path_topic_name="planner/empty2" pose_topic_name="vessel_target/computed" service_name="traj_gen/send_traj_wayp" speed="1.0" yaw_mode="0"/>
                 </Parallel>
                 <Action ID="Pick"/>
                 <Action ID="UnPick"/>
