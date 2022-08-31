@@ -164,6 +164,11 @@ RUN apt-get update && \
 #     && rm -rf /var/lib/apt/lists/* \
 #     && apt-get clean
 
+
+RUN apt-get update && \
+    apt-get install -y \
+    ros-galactic-pcl-ros ros-galactic-pcl-conversions ros-galactic-topic-tools
+
 # Commands below run as the developer user
 USER $USERNAME
 
@@ -185,11 +190,11 @@ ENV IGNITION_VERSION fortress
 ## TODO: needed?
 ENV PATH $PATH:$AEROSTACK2_PATH/scripts/
 RUN echo 'alias as2="source $AEROSTACK2_PATH/scripts/as2.bash"' >> ~/.bashrc    
-RUN echo 'source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash' >> ~/.bashrc    
+RUN echo 'source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash ' >> ~/.bashrc    
 
 WORKDIR /home/$USERNAME/aerostack2_ws/src/aerostack2
 COPY install.repos.secret ./install.repos
-RUN vcs import --recursive < ./install.repos && echo "imported repos  successfully"
+RUN vcs import --recursive < ./install.repos && echo "     00_57  imported repos  successfully"
 RUN rm install.repos
 
 # RUN as2 build
@@ -201,7 +206,7 @@ RUN /bin/bash -c 'source /opt/ros/galactic/setup.bash \
 RUN /bin/sh -c 'echo ". /opt/ros/galactic/setup.bash" >> ~/.bashrc ' \
     && /bin/sh -c 'echo ". ~/aerostack2_ws/install/setup.bash" >> ~/.bashrc'
 
-RUN /bin/sh -c 'echo "  COPYING PROJECT  " ' \
+# RUN /bin/sh -c 'echo "  COPYING PROJECT  " ' \
 # MBZIRC PROJECT
 WORKDIR /home/${USERNAME}/aerostack2_ws/src/aerostack2/projects/project_mbzirc
 COPY . .

@@ -20,7 +20,7 @@ function ctrl_c() {
 
 
 if [[ $vehicle_name == "usv" ]]; then
-    ./docker/as2_usv_launch.bash $vehicle_name -1462.0 -16.5 0.3
+    ./docker/as2_usv_launch.bash $vehicle_name -1462.0 -16.5 0.3 2
 elif [[ $vehicle_name == "drone_1" ]]; then
     ./docker/as2_drone_master_anchor.bash $vehicle_name -1488.0 0.0 4.18
 elif [[ $vehicle_name == "drone_2" ]]; then
