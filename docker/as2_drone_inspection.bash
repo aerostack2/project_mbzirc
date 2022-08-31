@@ -79,6 +79,13 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     groot_logger:=false \
     server_timeout:=30000 "
 
+new_window 'area2path' "ros2 launch area2path area_to_path_launch.py \
+    drone_id:=$drone_namespace \
+    use_sim_time:=true \
+    fov_h:=1.0472 \
+    altitude:=20.0 \
+    pitch:=0.43"
+
 new_window 'yolo_detector' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
   drone_id:=$drone_namespace \
   use_sim_time:=true \
