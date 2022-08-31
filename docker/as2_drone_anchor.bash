@@ -41,7 +41,7 @@ new_window 'visual_inertial_odometry' "ros2 launch vinodom vinodom_launch.py \
     show_matching:=false \
     init_x:=$init_x \
     init_y:=$init_y \
-    init_z:=$init_z"
+    init_z:=$init_z" 
 
 new_window 'controller_manager' "ros2 launch controller_manager controller_manager_launch.py \
     drone_id:=$drone_namespace \
@@ -60,13 +60,13 @@ new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behavi
 new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     robot_id:=$drone_namespace \
     use_sim_time:=true \
-    n_drones:=12 \
-    pose_topic:=pose \
+    n_drones:=6 \
+    pose_topic:=pose2 \
     tree_topic:=/tree \
     image_topic:=$COMPRESSED_IMAGE_TOPIC\
-    image_destination:=drone_4 \
+    image_destination:=drone_1 \
     loc_hist_topic:=/loc_hist \
-    send_times:=5 \
+    send_times:=3 \
     report_topic:=/$REPORT_TOPIC \
     event_topic:=/event \
     phase_topic:=/phase "
@@ -77,15 +77,15 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     tree:=drone_roles/anchor_$drone_namespace.xml \
     groot_logger:=false"
 
-new_window 'localization' "ros2 launch mbzirc_loc mbzirc_loc_launch.py \
-    robot_id:=$drone_namespace \
-    odom_topic:=sensor_measurements/odom \
-    range_topic:=slot1/rfsensor \
-    pose_topic:=global_localization/pose \
-    globloc_topic:=/loc_hist \
-    pose_type:=$uav_type \
-    global_frame:=earth_rectified \
-    use_sim_time:=true"
+# new_window 'localization' "ros2 launch mbzirc_loc mbzirc_loc_launch.py \
+#     robot_id:=$drone_namespace \
+#     odom_topic:=sensor_measurements/odom \
+#     range_topic:=slot1/rfsensor \
+#     pose_topic:=global_localization/pose \
+#     globloc_topic:=/loc_hist \
+#     pose_type:=$uav_type \
+#     global_frame:=earth_rectified \
+#     use_sim_time:=true"
 
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"

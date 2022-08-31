@@ -60,13 +60,13 @@ new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behavi
 new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     robot_id:=$drone_namespace \
     use_sim_time:=true \
-    n_drones:=12 \
-    pose_topic:=pose \
+    n_drones:=6 \
+    pose_topic:=pose2 \
     tree_topic:=/tree \
     image_topic:=$COMPRESSED_IMAGE_TOPIC\
-    image_destination:=drone_4 \
+    image_destination:=drone_1 \
     loc_hist_topic:=/loc_hist \
-    send_times:=5 \
+    send_times:=3 \
     report_topic:=/$REPORT_TOPIC \
     event_topic:=/event \
     phase_topic:=/phase "
@@ -83,15 +83,15 @@ new_window 'stream_sender' "ros2 launch mbzirc_sim_interface stream_sender_launc
     compressed_image_topic:=$COMPRESSED_IMAGE_TOPIC \
     report_topic:=$REPORT_TOPIC"
 
-new_window 'localization' "ros2 launch mbzirc_loc mbzirc_loc_launch.py \
-    robot_id:=$drone_namespace \
-    odom_topic:=sensor_measurements/odom \
-    range_topic:=slot1/rfsensor \
-    pose_topic:=global_localization/pose \
-    globloc_topic:=/loc_hist \
-    pose_type:=$uav_type \
-    global_frame:=earth_rectified \
-    use_sim_time:=true"
+# new_window 'localization' "ros2 launch mbzirc_loc mbzirc_loc_launch.py \
+#     robot_id:=$drone_namespace \
+#     odom_topic:=sensor_measurements/odom \
+#     range_topic:=slot1/rfsensor \
+#     pose_topic:=global_localization/pose \
+#     globloc_topic:=/loc_hist \
+#     pose_type:=$uav_type \
+#     global_frame:=earth_rectified \
+#     use_sim_time:=true"
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"
 

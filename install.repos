@@ -213,3 +213,26 @@ repositories:
     type: git 
     url: https://github.com/aerostack2-developers/yolo_object_detector.git
     version: main
+
+
+# ---------- other ----------
+
+  stack/mbzirc_pkgs/depthtection:
+    type: git 
+    url: https://ghp_q6jzqqmwldr7743ecmpwslh6vk0hls04necl@github.com/aerostack2-developers/depthtection.git
+    version: main
+    
+   stack/mbzirc_pkgs/follow_target:
+    type: git 
+    url: https://ghp_q6jzqqmwldr7743ecmpwslh6vk0hls04necl@github.com/aerostack2-developers/follow_target.git
+    version: main
+   
+  stack/mbzirc_pkgs/naive_position_estimator:
+    type: git 
+    url: https://ghp_q6jzqqmwldr7743ecmpwslh6vk0hls04necl@github.com/sky-eye-team/naive_position_estimator.git
+    version: main
+
+  stack/behaviours/usv_2d_odom:
+    type: git 
+    url: https://ghp_q6jzqqmwldr7743ecmpwslh6vk0hls04necl@github.com/sky-eye-team/usv_2d_odom.git
+    version: main
