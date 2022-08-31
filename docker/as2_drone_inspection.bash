@@ -57,7 +57,7 @@ new_window 'traj_generator' "ros2 launch trajectory_generator trajectory_generat
 new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behaviours_launch.py \
     drone_id:=$drone_namespace  \
     use_sim_time:=true \
-    config_takeoff:=robot_config/takeoff.yaml"
+    config_takeoff:=robot_config/takeoff_speed.yaml"
 
 new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     robot_id:=$drone_namespace \
