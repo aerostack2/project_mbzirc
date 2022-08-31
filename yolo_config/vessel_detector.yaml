@@ -1,0 +1,10 @@
+/**:
+  ros__parameters:
+    network:
+      config: "./vessel_detector/yolov3-tiny.cfg"
+      weights: "./vessel_detector/yolov3-tiny_best.weights"
+      class_names: "./vessel_detector/obj.names"
+    detection:
+      # threshold: 0.25
+      threshold: 0.50
+      nms_threshold: 0.45

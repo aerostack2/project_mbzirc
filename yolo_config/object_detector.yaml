@@ -1,0 +1,10 @@
+/**:
+  ros__parameters:
+    network:
+      config: "./object_detector/yolov3-tiny.cfg"
+      weights: "./object_detector/yolov3-tiny_best.weights"
+      class_names: "./object_detector/obj.names"
+    detection:
+      # threshold: 0.25
+      threshold: 0.50
+      nms_threshold: 0.45
