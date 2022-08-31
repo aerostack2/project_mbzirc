@@ -81,7 +81,7 @@ new_window 'stream_sender' "ros2 launch mbzirc_sim_interface stream_sender_launc
     compressed_image_topic:=$COMPRESSED_IMAGE_TOPIC \
     report_topic:=$REPORT_TOPIC"
 
-new_window 'localization' "roslaunch mbzirc_loc mbzirc_loc_launch.launch \
+new_window 'localization' "ros2 launch mbzirc_loc mbzirc_loc_launch.py \
     robot_id:=$drone_namespace \
     odom_topic:=sensor_measurements/odom \
     range_topic:=slot1/rfsensor \
