@@ -59,7 +59,7 @@ new_window 'basic_behaviours' "ros2 launch as2_basic_behaviours all_basic_behavi
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     use_sim_time:=true \
     drone_id:=$drone_namespace \
-    tree:=drone_roles/usv_dummy.xml \
+    tree:=drone_roles/usv.xml \
     groot_logger:=false\
     groot_client_port:=1668 \
     groot_server_port:=1669"
@@ -95,7 +95,7 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     send_times:=3 \
     report_topic:=/$REPORT_TOPIC \
     event_topic:=/event \
-    phase_topic:=/phase "
+    phase_topic:=/phase_filtered "
 
 # new_window 'localization' "ros2 launch mbzirc_loc mbzirc_loc_launch.py \
 #     robot_id:=$drone_namespace \
