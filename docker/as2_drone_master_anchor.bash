@@ -69,7 +69,7 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     send_times:=3 \
     report_topic:=/$REPORT_TOPIC \
     event_topic:=/event \
-    phase_topic:=/phase "
+    phase_topic:=/phase_filtered "
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
@@ -80,6 +80,7 @@ new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
 new_window 'stream_sender' "ros2 launch mbzirc_sim_interface stream_sender_launch.py \
     namespace:=$drone_namespace \
     use_sim_time:=true \
+    phase_topic:=/phase_filtered \
     compressed_image_topic:=$COMPRESSED_IMAGE_TOPIC \
     report_topic:=$REPORT_TOPIC"
 
