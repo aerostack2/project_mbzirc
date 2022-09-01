@@ -10,61 +10,63 @@
     </BehaviorTree>
     <!-- ////////// -->
     <BehaviorTree ID="BehaviorTree">
-        <Sequence>
-            <SubTree ID="ArmTakeoff" __shared_blackboard="false" tk_height="2" tk_speed="0.5"/>
-            <Action ID="GoTo" max_speed="6" name="Undock" pose="-1440;-16.5;0" yaw_angle="0.0" yaw_mode="0"/>
-            <ForceSuccess>
-                <KeepRunningUntilFailure>
-                    <IfThenElse>
-                        <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose}"/>
-                        <Sequence>
-                            <Action ID="SendEvent" data="{pose}" name="SendInspection" topic_name="{topic}"/>
-                            <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose}" topic_name="/usv/event">
-                                <IfThenElse>
-                                    <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose}" value_B="0;0;0">
-                                        <AlwaysFailure name="DetectionFalse"/>
-                                    </BlackboardCheckString>
-                                    <Sequence>
-                                        <Action ID="GoTo" max_speed="6" name="GoToVessel" pose="{vessel_pose}" yaw_angle="0.0" yaw_mode="0"/>
-                                        <Decorator ID="WaitForEvent" result="" topic_name="mission/rtl">
-                                            <AlwaysSuccess/>
-                                        </Decorator>
-                                    </Sequence>
-                                    <AlwaysSuccess name="TryNextRadarSearch"/>
-                                </IfThenElse>
-                            </Decorator>
-                        </Sequence>
-                        <AlwaysFailure name="NoRadarSearch"/>
-                    </IfThenElse>
-                </KeepRunningUntilFailure>
-            </ForceSuccess>
-            <Action ID="GoTo" max_speed="6" name="MidPoint" pose="-1000;0;0" yaw_angle="0.0" yaw_mode="0"/>
-            <ForceSuccess>
-                <KeepRunningUntilFailure>
-                    <IfThenElse>
-                        <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose}"/>
-                        <Sequence>
-                            <Action ID="SendEvent" data="{pose}" name="SendInspection" topic_name="{topic}"/>
-                            <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose}" topic_name="/usv/event">
-                                <IfThenElse>
-                                    <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose}" value_B="0;0;0">
-                                        <AlwaysFailure name="DetectionFalse"/>
-                                    </BlackboardCheckString>
-                                    <Sequence>
-                                        <Action ID="GoTo" max_speed="6" pose="{vessel_pose}" yaw_angle="0.0" yaw_mode="0"/>
-                                        <Decorator ID="WaitForEvent" result="" topic_name="mission/rtl">
-                                            <AlwaysSuccess/>
-                                        </Decorator>
-                                    </Sequence>
-                                    <AlwaysSuccess name="TryNextRadar"/>
-                                </IfThenElse>
-                            </Decorator>
-                        </Sequence>
-                        <AlwaysFailure name="NoRadarSearch"/>
-                    </IfThenElse>
-                </KeepRunningUntilFailure>
-            </ForceSuccess>
-        </Sequence>
+        <Delay delay_msec="60000">
+            <Sequence>
+                <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="2" tk_speed="0.5"/>
+                <Action ID="GoTo" max_speed="6" name="Undock" pose="-1440;-16.5;0" yaw_angle="0.0" yaw_mode="0"/>
+                <ForceSuccess>
+                    <KeepRunningUntilFailure>
+                        <IfThenElse>
+                            <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose}"/>
+                            <Sequence>
+                                <Action ID="SendEvent" data="{pose}" name="SendInspection" topic_name="{topic}"/>
+                                <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose}" topic_name="/usv/event">
+                                    <IfThenElse>
+                                        <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose}" value_B="0;0;0">
+                                            <AlwaysFailure name="DetectionFalse"/>
+                                        </BlackboardCheckString>
+                                        <Sequence>
+                                            <Action ID="GoTo" max_speed="6" name="GoToVessel" pose="{vessel_pose}" yaw_angle="0.0" yaw_mode="0"/>
+                                            <Decorator ID="WaitForEvent" result="" topic_name="mission/rtl">
+                                                <AlwaysSuccess/>
+                                            </Decorator>
+                                        </Sequence>
+                                        <AlwaysSuccess name="TryNextRadarSearch"/>
+                                    </IfThenElse>
+                                </Decorator>
+                            </Sequence>
+                            <AlwaysFailure name="NoRadarSearch"/>
+                        </IfThenElse>
+                    </KeepRunningUntilFailure>
+                </ForceSuccess>
+                <Action ID="GoTo" max_speed="6" name="MidPoint" pose="-1000;0;0" yaw_angle="0.0" yaw_mode="0"/>
+                <ForceSuccess>
+                    <KeepRunningUntilFailure>
+                        <IfThenElse>
+                            <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose}"/>
+                            <Sequence>
+                                <Action ID="SendEvent" data="{pose}" name="SendInspection" topic_name="{topic}"/>
+                                <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose}" topic_name="/usv/event">
+                                    <IfThenElse>
+                                        <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose}" value_B="0;0;0">
+                                            <AlwaysFailure name="DetectionFalse"/>
+                                        </BlackboardCheckString>
+                                        <Sequence>
+                                            <Action ID="GoTo" max_speed="6" pose="{vessel_pose}" yaw_angle="0.0" yaw_mode="0"/>
+                                            <Decorator ID="WaitForEvent" result="" topic_name="mission/rtl">
+                                                <AlwaysSuccess/>
+                                            </Decorator>
+                                        </Sequence>
+                                        <AlwaysSuccess name="TryNextRadar"/>
+                                    </IfThenElse>
+                                </Decorator>
+                            </Sequence>
+                            <AlwaysFailure name="NoRadarSearch"/>
+                        </IfThenElse>
+                    </KeepRunningUntilFailure>
+                </ForceSuccess>
+            </Sequence>
+        </Delay>
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
