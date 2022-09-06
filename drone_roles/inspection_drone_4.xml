@@ -15,7 +15,7 @@
                 <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="5" tk_speed="0.5"/>
                 <Parallel failure_threshold="1" success_threshold="1">
                     <Sequence>
-                        <Condition ID="IsTargetDetected" dist_threshold="" name="IsVesselDetected" pose="{vessel}" topic_name="vessel_target/computed"/>
+                        <Condition ID="IsTargetDetected" dist_threshold="1000" name="IsVesselDetected" pose="{vessel}" topic_name="vessel_target/computed"/>
                         <Action ID="SendEvent" data="{vessel}" topic_name="/usv/event"/>
                     </Sequence>
                     <Sequence>
@@ -27,7 +27,7 @@
                     </Sequence>
                 </Parallel>
                 <Parallel failure_threshold="1" success_threshold="1">
-                    <Condition ID="IsTargetDetected" dist_threshold="" name="IsPackageDetected" pose="{object}" topic_name="object_pose"/>
+                    <Condition ID="IsTargetDetected" dist_threshold="1000" name="IsPackageDetected" pose="{object}" topic_name="object_pose"/>
                     <Action ID="FollowPath" name="FollowVessel" path_topic_name="planner/empty2" pose_topic_name="vessel_target/computed" service_name="traj_gen/send_traj_wayp" speed="1.0" yaw_mode="0"/>
                 </Parallel>
                 <Action ID="Pick"/>
