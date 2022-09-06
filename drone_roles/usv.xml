@@ -12,7 +12,7 @@
     <BehaviorTree ID="BehaviorTree">
         <Delay delay_msec="60000">
             <Sequence>
-                <SubTree ID="ArmTakeoff" __shared_blackboard="false" tk_height="2" tk_speed="0.5"/>
+                <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="2" tk_speed="0.5"/>
                 <Action ID="GoTo" max_speed="6" name="Undock" pose="-1440;-16.5;0" yaw_angle="0.0" yaw_mode="0"/>
                 <ForceSuccess>
                     <KeepRunningUntilFailure>
