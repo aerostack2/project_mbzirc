@@ -13,14 +13,13 @@
         <Decorator ID="WaitForEvent" result="{center}" topic_name="/drone_4/event">
             <Sequence>
                 <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="5" tk_speed="0.5"/>
-                <Action ID="AreaPlanner" name="Area2Path" output_path_topic_name="planner/path" polygon_center="{center}"/>
                 <Parallel failure_threshold="1" success_threshold="1">
                     <Sequence>
                         <Condition ID="IsTargetDetected" dist_threshold="" name="IsVesselDetected" pose="{vessel}" topic_name="vessel_target/computed"/>
                         <Action ID="SendEvent" data="{vessel}" topic_name="/usv/event"/>
                     </Sequence>
                     <Sequence>
-                        <Action ID="FollowPath" name="FollowAreaPath" path_topic_name="planner/path" pose_topic_name="planner/empty" service_name="traj_gen/send_traj_wayp" speed="3.0" yaw_mode="0"/>
+                        <Action ID="GoTo" max_speed="5" name="GoToVessel" pose="{center}" yaw_angle="0.0" yaw_mode="0"/>
                         <Action ID="SendEvent" data="0;0;0" topic_name="/usv/event"/>
                         <Decorator ID="WaitForEvent" result="" topic_name="mission/end">
                             <AlwaysFailure/>
