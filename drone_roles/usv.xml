@@ -12,7 +12,7 @@
     <BehaviorTree ID="BehaviorTree">
         <Delay delay_msec="60000">
             <Sequence>
-                <SubTree ID="ArmTakeoff" __shared_blackboard="true" tk_height="2" tk_speed="0.5"/>
+                <SubTree ID="ArmTakeoff" __shared_blackboard="false" tk_height="2" tk_speed="0.5"/>
                 <Action ID="GoTo" max_speed="6" name="Undock" pose="-1440;-16.5;0" yaw_angle="0.0" yaw_mode="0"/>
                 <ForceSuccess>
                     <KeepRunningUntilFailure>
@@ -20,7 +20,7 @@
                             <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose}"/>
                             <Sequence>
                                 <Action ID="Echo" data="{pose}" name="EchoRadarDetection"/>
-                                <Action ID="SendEvent" data="{pose}" name="SendInspection" topic_name="/drone_4/event"/>
+                                <Action ID="SendEvent" data="-1000;-500;20" name="SendInspection" topic_name="/drone_4/event"/>
                                 <Timeout msec="300000">
                                     <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose}" topic_name="/usv/event">
                                         <IfThenElse>
