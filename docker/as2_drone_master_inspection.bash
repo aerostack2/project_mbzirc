@@ -92,7 +92,7 @@ new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compress
     detection_topic:=detector_node/detections \
     compressed_image_topic:=$COMPRESSED_IMAGE_TOPIC \
     resize_image:=true \
-    resize_image_factor:=0.3 \
+    resize_image_factor:=0.1 \
     pub_rate:=0.5 \
     report_topic:=/drone_1/$REPORT_TOPIC \
     vessel_detection_topic:=detector_node/vessel_detections \
