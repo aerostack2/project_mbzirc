@@ -85,20 +85,20 @@ new_window 'area2path' "ros2 launch area2path area_to_path_launch.py \
     altitude:=20.0 \
     pitch:=0.43"
 
-# new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compressor_launch.py \
-#     namespace:=$drone_namespace \
-#     use_sim_time:=true \
-#     rgb_image_topic:=slot0/image_raw \
-#     detection_topic:=detector_node/detections \
-#     compressed_image_topic:=$COMPRESSED_IMAGE_TOPIC \
-#     resize_image:=true \
-#     resize_image_factor:=0.3 \
-#     pub_rate:=0.5 \
-#     report_topic:=/drone_1/$REPORT_TOPIC \
-#     vessel_detection_topic:=detector_node/vessel_detections \
-#     object_detection_topic:=detector_node/object_detections \
-#     phase_topic:=/mbzirc/phase \
-#     target_vessel:=vessel_E"
+new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compressor_launch.py \
+    namespace:=$drone_namespace \
+    use_sim_time:=true \
+    rgb_image_topic:=slot0/image_raw \
+    detection_topic:=detector_node/detections \
+    compressed_image_topic:=$COMPRESSED_IMAGE_TOPIC \
+    resize_image:=true \
+    resize_image_factor:=0.3 \
+    pub_rate:=0.5 \
+    report_topic:=/drone_1/$REPORT_TOPIC \
+    vessel_detection_topic:=detector_node/vessel_detections \
+    object_detection_topic:=detector_node/object_detections \
+    phase_topic:=/mbzirc/phase \
+    target_vessel:=vessel_E"
 
 # new_window 'localization' "ros2 launch mbzirc_loc mbzirc_loc_launch.py \
 #     robot_id:=$drone_namespace \
@@ -110,47 +110,47 @@ new_window 'area2path' "ros2 launch area2path area_to_path_launch.py \
 #     global_frame:=earth_rectified \
 #     use_sim_time:=true"
 
-# new_window 'yolo_detector_vessel' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
-#     drone_id:=$drone_namespace \
-#     use_sim_time:=true \
-#     config:=./yolo_config/vessel_detector.yaml \
-#     camera_topic:=slot0/image_raw \
-#     detections_topic:=detector_node/vessel_detections"
+new_window 'yolo_detector_vessel' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
+    drone_id:=$drone_namespace \
+    use_sim_time:=true \
+    config:=./yolo_config/vessel_detector.yaml \
+    camera_topic:=slot0/image_raw \
+    detections_topic:=detector_node/vessel_detections"
 
-# new_window 'naive_position_estimator' "ros2 launch naive_position_estimator naive_position_estimator_launch.py \
-#     namespace:=$drone_namespace \
-#     base_frame:=$drone_namespace \
-#     show_detections:=false \
-#     computed_pose_topic:=vessel_target/computed \
-#     camera_topic:=slot0 \
-#     z_offset:=-0.0 \
-#     pointcloud_topic:=slot3/points \
-#     phase_topic:=/mbzirc/phase \
-#     target_class:=vessel_E \
-#     detection_topic:=detector_node/vessel_detections \
-#     use_sim_time:=true"
+new_window 'naive_position_estimator' "ros2 launch naive_position_estimator naive_position_estimator_launch.py \
+    namespace:=$drone_namespace \
+    base_frame:=$drone_namespace \
+    show_detections:=false \
+    computed_pose_topic:=vessel_target/computed \
+    camera_topic:=slot0 \
+    z_offset:=-0.0 \
+    pointcloud_topic:=slot3/points \
+    phase_topic:=/mbzirc/phase \
+    target_class:=vessel_E \
+    detection_topic:=detector_node/vessel_detections \
+    use_sim_time:=true"
 
-# new_window 'yolo_detector_object' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
-#     drone_id:=$drone_namespace \
-#     use_sim_time:=true \
-#     config:=./yolo_config/object_detector.yaml \
-#     camera_topic:=slot6/image_raw \
-#     detections_topic:=detector_node/object_detections"
+new_window 'yolo_detector_object' " ros2 launch yolo_object_detector yolo_object_detector_launch.py \
+    drone_id:=$drone_namespace \
+    use_sim_time:=true \
+    config:=./yolo_config/object_detector.yaml \
+    camera_topic:=slot6/image_raw \
+    detections_topic:=detector_node/object_detections"
 
-# new_window 'depthtection' " ros2 launch depthtection depthtection_launch.py \
-#     namespace:=$drone_namespace \
-#     camera_topic:=slot6 \
-#     base_frame:=$drone_namespace \
-#     show_detection:=false \
-#     target_object:=small_blue_box \
-#     phase_topic:=/mbzirc/phase \
-#     computed_pose_topic:=object_pose \
-#     detection_topic:=detector_node/object_detections \
-#     use_sim_time:=true"
+new_window 'depthtection' " ros2 launch depthtection depthtection_launch.py \
+    namespace:=$drone_namespace \
+    camera_topic:=slot6 \
+    base_frame:=$drone_namespace \
+    show_detection:=false \
+    target_object:=small_blue_box \
+    phase_topic:=/mbzirc/phase \
+    computed_pose_topic:=object_pose \
+    detection_topic:=detector_node/object_detections \
+    use_sim_time:=true"
 
-# new_window 'follow_target' "ros2 launch follow_target follow_target_launch.py \
-#     drone_id:=$drone_namespace \
-#     target_topic:=target_pose \
-#     use_sim_time:=true"
+new_window 'follow_target' "ros2 launch follow_target follow_target_launch.py \
+    drone_id:=$drone_namespace \
+    target_topic:=target_pose \
+    use_sim_time:=true"
 
 echo -e "Launched drone $drone_namespace. For attaching to the session, run: \n  \t $ tmux a -t $drone_namespace"

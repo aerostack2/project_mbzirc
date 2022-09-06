@@ -28,7 +28,7 @@ elif [[ $vehicle_name == "drone_2" ]]; then
 elif [[ $vehicle_name == "drone_3" ]]; then
     ./docker/as2_drone_anchor.bash $vehicle_name -1480.0 -5.0 4.18
 elif [[ $vehicle_name == "drone_4" ]]; then
-    ./docker/as2_drone_inspection.bash $vehicle_name -1460.2 -17.3 1.1
+    ./docker/as2_drone_master_inspection.bash $vehicle_name -1460.2 -17.3 1.1
 elif [[ $vehicle_name == "drone_5" ]]; then
     ./docker/as2_drone_inspection.bash $vehicle_name -1460.2 -15.7 1.1
 elif [[ $vehicle_name == "drone_6" ]]; then
