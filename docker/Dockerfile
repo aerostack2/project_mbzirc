@@ -194,7 +194,7 @@ RUN echo 'source $AEROSTACK2_PATH/scripts/bash_utils/as2_autocompletion.bash ' >
 
 WORKDIR /home/$USERNAME/aerostack2_ws/src/aerostack2
 COPY install.repos.secret ./install.repos
-RUN vcs import --recursive < ./install.repos && echo "     01_49  imported repos  successfully"
+RUN vcs import --recursive < ./install.repos && echo "  03_16  imported repos  successfully"
 RUN rm install.repos
 
 # RUN as2 build

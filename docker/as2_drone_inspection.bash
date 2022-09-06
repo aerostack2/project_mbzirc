@@ -70,8 +70,8 @@ new_window 'comms' "ros2 launch mbzirc_comms mbzirc_comms_launch.py \
     loc_hist_topic:=/loc_hist \
     send_times:=3 \
     report_topic:=/$REPORT_TOPIC \
-    event_topic:=/event \
-    phase_topic:=/phase_filtered "
+    event_topic:=/event "
+    # phase_topic:=/phase_filtered "
 
 new_window 'mission_planner' "ros2 launch mbzirc_bt mbzirc_bt.launch.py \
     drone_id:=$drone_namespace \
@@ -97,7 +97,7 @@ new_window 'stream_compressor' "ros2 launch mbzirc_sim_interface stream_compress
     report_topic:=/drone_1/$REPORT_TOPIC \
     vessel_detection_topic:=detector_node/vessel_detections \
     object_detection_topic:=detector_node/object_detections \
-    phase_topic:=/phase_filtered \
+    phase_topic:=/mbzirc/phase \
     target_vessel:=vessel_E"
 
 # new_window 'localization' "ros2 launch mbzirc_loc mbzirc_loc_launch.py \
@@ -125,7 +125,7 @@ new_window 'naive_position_estimator' "ros2 launch naive_position_estimator naiv
     camera_topic:=slot0 \
     z_offset:=-0.0 \
     pointcloud_topic:=slot3/points \
-    phase_topic:=/phase_filtered \
+    phase_topic:=/mbzirc/phase \
     target_class:=vessel_E \
     detection_topic:=detector_node/vessel_detections \
     use_sim_time:=true"
@@ -143,7 +143,7 @@ new_window 'depthtection' " ros2 launch depthtection depthtection_launch.py \
     base_frame:=$drone_namespace \
     show_detection:=false \
     target_object:=small_blue_box \
-    phase_topic:=/phase_filtered \
+    phase_topic:=/mbzirc/phase \
     computed_pose_topic:=object_pose \
     detection_topic:=detector_node/object_detections \
     use_sim_time:=true"
