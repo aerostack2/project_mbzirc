@@ -21,7 +21,7 @@
                             <Sequence>
                                 <Action ID="Echo" data="{pose}" name="EchoRadarDetection"/>
                                 <Action ID="SendEvent" data="-900;-400;20" name="SendInspection" topic_name="/drone_4/event"/>
-                                <Timeout msec="300000">
+                                <Timeout msec="30000000">
                                     <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose}" topic_name="/usv/event">
                                         <IfThenElse>
                                             <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose}" value_B="0;0;0">
@@ -49,7 +49,7 @@
                             <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose2}"/>
                             <Sequence>
                                 <Action ID="SendEvent" data="{pose2}" name="SendInspection" topic_name="/drone_5/event"/>
-                                <Timeout msec="300000">
+                                <Timeout msec="30000000">
                                     <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose2}" topic_name="/usv/event">
                                         <IfThenElse>
                                             <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose2}" value_B="0;0;0">
@@ -74,7 +74,7 @@
                     <Action ID="RadarSearch" drone_id="{topic}" vessel_pose="{pose3}"/>
                     <Sequence>
                         <Action ID="SendEvent" data="{pose3}" topic_name="/drone_6/event"/>
-                        <Timeout msec="300000">
+                        <Timeout msec="30000000">
                             <Decorator ID="WaitForEvent" name="WaitForDetection" result="{vessel_pose3}" topic_name="/usv/event">
                                 <IfThenElse>
                                     <BlackboardCheckString return_on_mismatch="SUCCESS" value_A="{vessel_pose3}" value_B="0;0;0">
