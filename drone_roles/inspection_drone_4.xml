@@ -26,10 +26,7 @@
                         </Decorator>
                     </Sequence>
                 </Parallel>
-                <Parallel failure_threshold="1" success_threshold="1">
-                    <Condition ID="IsTargetDetected" dist_threshold="1000" name="IsPackageDetected" pose="{object}" topic_name="object_pose"/>
-                    <Action ID="FollowPath" name="FollowVessel" path_topic_name="planner/empty2" pose_topic_name="vessel_target/computed" service_name="traj_gen/send_traj_wayp" speed="1.0" yaw_mode="0"/>
-                </Parallel>
+                <Action ID="DynamicFollow" name="DynamicFollowVessel"/>
                 <Action ID="Pick"/>
                 <Action ID="UnPick"/>
                 <Decorator ID="WaitForEvent" name="MissionEnd" result="{land_pose}" topic_name="mission/end">
@@ -63,6 +60,7 @@
         <Action ID="Disarm">
             <input_port default="set_arming_state" name="service_name">Arming service name</input_port>
         </Action>
+        <Action ID="DynamicFollow"/>
         <Action ID="Earth2Rectified">
             <input_port name="earth_pose"/>
             <output_port name="rectified_pose"/>
